@@ -1,28 +1,88 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view/>
+    <div id="nav">
+      <span v-for="route in routes" :key="route.name">
+        <router-link :to="route.to">{{ route.name }}</router-link>
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "App",
+  data() {
+    return {
+      routes: [
+        {
+          name: "ALFA 4C",
+          to: "/"
+        },
+        {
+          name: "HIGHLIGHTS",
+          to: "/highlights"
+        },
+        {
+          name: "PANORAMICA",
+          to: "#"
+        },
+        {
+          name: "SCHEDA TECNICA",
+          to: "#"
+        },
+        {
+          name: "GALLERY",
+          to: "#"
+        },
+        {
+          name: "360°",
+          to: "#"
+        },
+        {
+          name: "CONTATTI",
+          to: "#"
+        }
+      ]
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss" scoped>
+#nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  height: 8%;
+
+  background-color: #353535;
+
+
+  a {
+    padding-left: 9px;
+    
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      border-left: 3px solid orange;
+      padding: 1px 0 1px 6px;
+    }
+
+    &.router-link-exact-active {
+      border-left: 3px solid orange;
+      padding: 1px 0 1px 6px;
+    }
+  }
 }
+
 </style>
