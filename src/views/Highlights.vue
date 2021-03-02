@@ -46,7 +46,7 @@ export default {
   name: "Highlights",
   data() {
     return {
-      currentIndex: 1,
+      currentIndex: 0,
       sections: [
         {
           title: "CARROZZERIA",
