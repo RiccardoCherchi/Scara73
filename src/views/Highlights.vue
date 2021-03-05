@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-hammer:swipe.down="swipeDown">
+  <div class="home" v-hammer:swipe.up="swipeUp" v-hammer:swipe.down="swipeDown">
     <div class="container">
       <div class="custom-row">
         <div class="custom-col">
@@ -85,9 +85,13 @@ export default {
   },
 
   methods: {
-    swipeDown() {
+    swipeUp() {
       const index =  Math.min(this.currentIndex + 1, this.sections.length - 1);
       this.currentIndex = index;
+    },
+
+    swipeDown() {
+      this.currentIndex --;
     },
 
     handleScroll(event) {
