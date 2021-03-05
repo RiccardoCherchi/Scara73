@@ -95,11 +95,11 @@ export default {
     },
 
     handleScroll(event) {
-      if (event.deltaY < 0) {
+      if (event.deltaY > 0) {
         const index =  Math.min(this.currentIndex + 1, this.sections.length - 1);
         this.currentIndex = index;
       } else {
-        if (this.currentIndex > 0) {
+        if (this.currentIndex < 0) {
           this.currentIndex --;
         }
       }
