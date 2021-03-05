@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" v-hammer:swipe.down="swipeDown">
     <div class="container">
       <div class="custom-row">
         <div class="custom-col">
@@ -52,7 +52,7 @@ export default {
           title: "CARROZZERIA",
           description: "Le parti che compongono la carrozzeria sono state realizzate interamente in <span style='color: #FCCE21'>fibra di carbonio</span> in autoclave. Oltre ad aver guadagnato in estetica, resistenza e leggerezza, la carrozzeria vanta di materiali all’avanguardia in termini tecnologici e costruttivi.",
           image: "carrozzeria",
-          size: "800px",
+          size: "100%",
           alternativeDescription: null,
           content: "Il cofano posteriore è stato studiato e realizzato su misura con carbon scoop per garantire il massimo delle performance di estrazione aria."
         },
@@ -60,7 +60,7 @@ export default {
           title: "SEDILI",
           description: null,
           image: "sedili",
-          size: "450px",
+          size: "100%",
           alternativeDescription: "I sedili sono stati realizzati in <span style='color: #FCCE21'>carbonio</span> e <span style='color: #FCCE21'>Alcantara</span>, il peso è di 2,5kg l’uno.",
           content: "L’Alcantara® è un materiale Made in Italy, uno dei più pregiati per le finiture delle auto."
         },
@@ -85,6 +85,11 @@ export default {
   },
 
   methods: {
+    swipeDown() {
+      const index =  Math.min(this.currentIndex + 1, this.sections.length - 1);
+      this.currentIndex = index;
+    },
+
     handleScroll(event) {
       if (event.deltaY < 0) {
         const index =  Math.min(this.currentIndex + 1, this.sections.length - 1);
@@ -109,6 +114,8 @@ export default {
   .home {
     min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
     min-height: 100vh; /* These two lines are counted as one :-)       */
+
+    padding: 5%;
 
     display: flex;
     align-items: center;
