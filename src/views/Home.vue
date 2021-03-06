@@ -1,26 +1,30 @@
 <template>
   <div class="home">
-    <div class="container">
+    <full-page ref="fullpage" :options="options" id="fullpage">
+    <div class="section text-danger" v-for="(section, i) in sections" :key="i">
+      <div class="container section">
       <div class="row">
         <div class="col-xl-6">
           <div class="title">
-            <h1 v-html="sections[currentIndex].title"></h1>
+            <h1 v-html="section.title"></h1>
           </div>
         </div>
         <div class="col-xl-6">
           <div class="content">
-           <p v-html="sections[currentIndex].content"></p>
+           <p v-html="section.content"></p>
           </div>
         </div>
       </div>
-      <div class="statistics" v-if="sections[currentIndex].statistics">
-        <div class="statistic" :class="{'important': statistic.important}" v-for="statistic in sections[currentIndex].statistics" :key="statistic.value" >
+      <div class="statistics" v-if="section.statistics">
+        <div class="statistic" :class="{'important': statistic.important}" v-for="statistic in section.statistics" :key="statistic.value" >
           <p class="title" v-html="statistic.title"></p>
           <p class="value">{{ statistic.value }}</p>
         </div>
       </div>
     </div>
-  </div>
+    </div>
+  </full-page>
+</div>
 </template>
 
 <script>
@@ -69,27 +73,6 @@ export default {
       ]
     }
   },
-
-  created () {
-    window.addEventListener('wheel', this.handleScroll);
-  },
-  
-  destroyed () {
-    window.addEventListener('wheel', this.handleScroll);
-  },
-
-  methods: {
-    handleScroll(event) {
-      if (event.deltaY > 0) {
-        const index =  Math.min(this.currentIndex + 1, this.sections.length - 1);
-        this.currentIndex = index;
-      } else {
-        if (this.currentIndex < 0) {
-          this.currentIndex --;
-        }
-      }
-    }
-  }
 }
 </script>
 

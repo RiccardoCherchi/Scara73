@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import { VueHammer } from 'vue2-hammer'
+import 'fullpage.js/vendors/scrolloverflow'
+import VueFullPage from 'vue-fullpage.js'
 
-Vue.use(VueHammer)
+Vue.use(VueFullPage);
+
+
 Vue.config.productionTip = false
 
 

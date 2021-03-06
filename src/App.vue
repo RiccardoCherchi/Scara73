@@ -25,7 +25,7 @@ export default {
         },
         {
           name: "PANORAMICA",
-          to: "#"
+          to: "/panoramica"
         },
         {
           name: "SCHEDA TECNICA",
