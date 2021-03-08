@@ -1,6 +1,6 @@
 <template>
 <div class="home">
-    <full-page ref="fullpage" :options="options" id="fullpage">
+    <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
     <div class="section container text-danger" v-for="section in sections" :key="section.title">
       <div class="custom-row">
         <div class="custom col">
@@ -55,7 +55,6 @@ export default {
         }
       ],
       options: {
-        scrollHorizontally: true,
       }
     }
   },
@@ -64,12 +63,16 @@ export default {
     this.$refs.fullpage.init()
   },
 
+  updated() {
+    this.$refs.fullpage.init()
+  },
+
   methods: {
 
     getImgUrl(image) {
-    var images = require.context('@/assets/images/models/', false, /\.png$/)
-    return images('./' + image + ".png")
-  }
+      var images = require.context('@/assets/images/models/', false, /\.png$/)
+      return images('./' + image + ".png")
+    }
   }
 }
 </script>

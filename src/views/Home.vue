@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <full-page ref="fullpage" :options="options" id="fullpage">
+    <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
     <div class="section text-danger" v-for="(section, i) in sections" :key="i">
       <div class="container section">
       <div class="row">
@@ -70,9 +70,18 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      options: {},
     }
   },
+  mounted() {
+    this.$refs.fullpage.init()
+  },
+  updated() {
+    this.$refs.fullpage.init()
+
+  },
+  
 }
 </script>
 
