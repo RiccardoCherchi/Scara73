@@ -93,7 +93,7 @@ export default {
         min-height: 100vh; /* These two lines are counted as one :-)       */
 
         background-image: url("../assets/images/backgrounds/overview.jpg");
-        background-position: 0 50%;
+        background-position: center;
     }
 
     .title {

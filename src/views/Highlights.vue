@@ -1,24 +1,23 @@
 <template>
 <div class="home">
     <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
-    <div class="section container text-danger" v-for="section in sections" :key="section.title">
-      <div class="custom-row">
-        <div class="custom col">
-          <div class="title">
-            <h1>{{ section.title }}</h1>
-          </div>
-          <div class="content-container">
-            <p v-if="section.alternativeDescription" v-html="section.alternativeDescription"></p>
-            <p class="content" v-html="section.content"></p>
+        <div class="section custom-container text-danger" v-for="section in sections" :key="section.title">
+          <div class="custom-row">
+            <div class="custom col">
+              <div class="title">
+                <h1>{{ section.title }}</h1>
+              </div>
+              <div class="content-container">
+                <p v-if="section.alternativeDescription" v-html="section.alternativeDescription"></p>
+                <p class="content" v-html="section.content"></p>
+              </div>
+            </div>
+            <div class="custom-col">
+              <p class="description" v-html="section.description"></p>
+              <div class="image"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
+            </div>
           </div>
         </div>
-         <div class="custom-col">
-          <p class="description" v-html="section.description"></p>
-          <div class="image"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
-        </div>
-      </div>
-      
-    </div>
     
   </full-page>
 </div>
@@ -33,7 +32,7 @@ export default {
           title: "CARROZZERIA",
           description: "Le parti che compongono la carrozzeria sono state realizzate interamente in <span style='color: #FCCE21'>fibra di carbonio</span> in autoclave. Oltre ad aver guadagnato in estetica, resistenza e leggerezza, la carrozzeria vanta di materiali all’avanguardia in termini tecnologici e costruttivi.",
           image: "carrozzeria",
-          size: "800px",
+          size: "100% !important",
           alternativeDescription: null,
           content: "Il cofano posteriore è stato studiato e realizzato su misura con carbon scoop per garantire il massimo delle performance di estrazione aria."
         },
@@ -60,7 +59,8 @@ export default {
   },
 
   mounted() {
-    this.$refs.fullpage.init()
+    this.$refs.fullpage.init();
+       
   },
 
   updated() {
@@ -104,15 +104,15 @@ export default {
     grid-gap: 10%;
   }
 
-  img {
-    justify-self: end;
+  .custom-container {
+    width: 90%;
+    margin: 0 auto;
 
-    @media screen and (max-width: 900px) {
-      width: 100%;
+    img {
+      @media screen and (max-width: 1300px) {
+        width: 300px !important;
+      }
     }
-  }
-
-  .container {
 
     .row {
       margin-top: 5%;
@@ -120,9 +120,18 @@ export default {
 
     .content-container {
       margin-top: 15%;
+      
+      @media screen and (max-width: 1300px) {
+        margin-top: 5%;
+      }
+
       .content {
         color: $secondary_text;
         font-size: 18px;
+
+        @media screen and (max-width: 1300px) {
+        font-size: 14px;
+      }
       }
     }
 
@@ -130,6 +139,9 @@ export default {
       color: #fff;
       font-size: 24px;
 
+      @media screen and (max-width: 1300px) {
+        font-size: 18px;
+      }
     }
 
     .title {
@@ -141,12 +153,22 @@ export default {
       height: 400px;
       width: 400px;
 
+      @media screen and (max-width: 1300px) {
+        height: 280px;
+        width: 280px;
+        margin-top: 5%;
+      }
+
       display: flex;
       justify-content: center;
       align-items: center;
       h1 {
         color: #fff;
-        font-size: 5rem;
+        font-size: 3.5rem;
+
+        @media (max-width: 1300px) {
+          font-size: 2rem;
+        }
       }
     }
   }

@@ -29,7 +29,7 @@ export default {
         },
         {
           name: "SCHEDA TECNICA",
-          to: "#"
+          to: "/scheda-tecnica"
         },
         {
           name: "GALLERY",
