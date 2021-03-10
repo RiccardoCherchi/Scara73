@@ -2,15 +2,29 @@
   <div class="home" :class="{'on' : start}">
     <div class="custom-container">
         <img @click="powerOn" class="start" :src="start ? getImgUrl('start-on.png') : getImgUrl('start-off.png')" alt="start button">
-        <img class="circle" :src="getImgUrl('info-circle.png')" alt="info circle">
+        <!-- <img id="circle" class="circle" :src="getImgUrl('info-circle.png')" alt="info circle"> -->
+        <!-- <img id="circle-dotted" class="circle dotted" :src="getImgUrl('info-circle-dotted.png')" alt="info circle"> -->
+
+        <svg class="circle" width="1138" height="1137" viewBox="0 0 1138 1137" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M569.496 1136.95C883.442 1136.95 1137.95 882.446 1137.95 568.5C1137.95 254.554 883.442 0.0500488 569.496 0.0500488C255.55 0.0500488 1.0459 254.554 1.0459 568.5C1.0459 882.446 255.55 1136.95 569.496 1136.95Z" stroke="black" stroke-width="0.1"/>
+            <g id="circle">
+                <path d="M300.576 103.8C396.064 48.6701 506.195 24.2341 616.039 33.8041C725.883 43.3751 830.128 86.4891 914.64 157.302C999.16 228.115 1059.86 323.203 1088.51 429.675C1117.16 536.148 1112.38 648.856 1074.82 752.52C1037.26 856.19 968.73 945.79 878.52 1009.2C788.315 1072.6 680.794 1106.74 570.534 1106.97C460.274 1107.21 352.607 1073.54 262.129 1010.53C171.65 947.51 102.736 858.2 64.7271 754.696" stroke="white"/>
+            </g>
+            <g id="circle-dotted">
+                <path d="M511.139 85.037C594.868 74.891 679.797 86.704 757.579 119.315C835.36 151.926 903.32 204.213 954.78 271.038C1006.24 337.864 1039.42 416.927 1051.07 500.46C1062.73 583.993 1052.45 669.121 1021.24 747.477C990.04 825.834 938.98 894.72 873.1 947.38C807.208 1000.03 728.755 1034.64 645.445 1047.79C562.136 1060.95 476.837 1052.2 397.931 1022.41C319.025 992.63 249.226 942.82 195.395 877.89" stroke="white" stroke-miterlimit="1" stroke-dasharray="5 5"/>
+            </g>
+        </svg>
+
+
+
 
         <div class="menu">
-            <li class="item" :style="{marginLeft: `-${index}rem`}" :class="{'active': item.active}" v-for="(item, index) in menu" :key="item.title">{{ item.title }}</li>
+            <li @click="changeInfo(index)" class="item" :style="{marginLeft: `-${index}rem`}" :class="{'active': index == menu_active}" v-for="(item, index) in menu" :key="item.title">{{ item.title }}</li>
         </div>
 
         <div class="info-wrapper">
-            <div class="info" v-for="item in info" :key="item.title">
-                <p class="title">{{ item.title }}</p>
+            <div class="info" v-for="item in infos[info_index].info" :key="item.title">
+                <p class="title" v-html="item.title"></p>
                 <p class="value">{{ item.value }}</p>
                 <p class="text">{{ item.text }}</p>
             </div>
@@ -26,38 +40,81 @@ export default {
     data() {
         return {
             start: false, 
+            menu_active: 0,
             menu: [
                 {
                     title: "panoramica",
-                    active: true
                 },
                 {
                     title: "performance",
-                    active: false
                 },
                 {
                     title: "specifiche",
-                    active: false
                 }
             ],
-            info: [
+            info_index: 1,
+            infos: [
                 {
-                    title: "peso a secco",
-                    value: "xxx kg",
+                    info: [
+                    {
+                        title: "peso a secco",
+                        value: "xxx kg",
+                    },
+                    {
+                        title: "motore",
+                        value: "1742 cc",
+                        text: "sovralimentato"
+                    },
+                    {
+                        title: "potenza",
+                        value: "xxx cv",
+                    },
+                    {
+                        title: "coppia",
+                        value: "xxx Nm",
+                    },
+                    ]
                 },
                 {
-                    title: "motore",
-                    value: "1742 cc",
-                    text: "sovralimentato"
+                    info: [
+                    {
+                        title: "velocità max",
+                        value: "xxx km/h",
+                    },
+                    {
+                        title: "accelerazione",
+                        value: "xxxx",
+                    },
+                    {
+                        title: "frenata",
+                        value: "xxx",
+                    },
+                    {
+                        title: "accelerazione laterale",
+                        value: "xxxx",
+                    },
+                    ]
                 },
                 {
-                    title: "potenza",
-                    value: "xxx cv",
-                },
-                {
-                    title: "coppia",
-                    value: "xxx Nm",
-                },
+                    info: [
+                    {
+                        title: "pneumatici",
+                        value: "xxxx",
+                    },
+                    {
+                        title: "trazione",
+                        value: "posteriore",
+                    },
+                    {
+                        title: "carreggiata",
+                        value: "xxxx",
+                    },
+                    {
+                        title: "peso",
+                        value: "xxxx",
+                    },
+                    ]
+                }
             ]
         }
     },
@@ -71,6 +128,27 @@ export default {
 
         powerOn() {
             this.start = !this.start;
+        },
+
+        changeInfo(index) {
+            console.log(index);
+            this.menu_active = index;
+            this.info_index = index;
+
+            let circle = document.getElementById("circle")
+            let circle_dotted = document.getElementById("circle-dotted")
+
+            console.log(circle)
+            console.log(circle_dotted)
+
+            circle.classList.add("animate")
+            circle_dotted.classList.add("animate-dotted")
+            setTimeout(() => {
+                circle.classList.remove("animate")
+            }, 800)
+            setTimeout(() => {  
+                circle_dotted.classList.remove("animate-dotted")
+            }, 1000)
         }
   }
 }
@@ -112,9 +190,31 @@ export default {
         .circle {
             margin-top: 10%;
             position: absolute;
-            width: 50%;
+            // width: 50%;
             z-index: -1;
+
+            .animate {
+                transform-origin: center;
+                animation: rotation 0.8s linear;
+            }
+
+            .animate-dotted {
+                transform-origin: center;
+                animation: rotation 1s linear;
+            }
+
+            
+
+            @keyframes rotation {
+                from {
+                    transform: rotate(0deg);
+                } to {
+                    transform: rotate(360deg);
+                }
+            }
         }
+
+        
             
         .info-wrapper {
             position: absolute;

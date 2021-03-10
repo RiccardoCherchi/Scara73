@@ -18,46 +18,47 @@ export default {
             options: {},
             coordinates: [
                 {
-                    x: 1432,
-                    y: 733
+                    x: 75,
+                    y: 78
                 },
                 {
-                    x: 1355,
-                    y: 559
+                    x: 71,
+                    y: 59
                 },
                 {
-                    x: 1202,
-                    y: 636
+                    x: 63,
+                    y: 67
                 },
                 {
-                    x: 1229,
-                    y: 740
+                    x: 64,
+                    y: 78
                 },
                 {
-                    x: 881,
-                    y: 651
+                    x: 46,
+                    y: 69
                 },
                 {
-                    x: 753,
-                    y: 548
+                    x: 39,
+                    y: 58
                 },
                 {
-                    x: 564,
-                    y: 579
+                    x: 29,
+                    y: 61
                 },
                 {
-                    x: 612,
-                    y: 739
+                    x: 32,
+                    y: 78
                 },
                 {
-                    x: 483,
-                    y: 807
+                    x: 25,
+                    y: 85
                 },
             ]
         }
     },
 
     mounted() {
+
         const home = document.getElementsByClassName("home")[0];
 
         this.coordinates.forEach((e) => {
@@ -66,8 +67,8 @@ export default {
             );
             point.className = "point";
             point.style.position = "absolute";
-            point.style.left = `${e.x}px`;
-            point.style.top = `${e.y}px`;
+            point.style.left = `${e.x}%`;
+            point.style.top = `${e.y}%`;
 
             let image = point.appendChild(
                 document.createElement("img")
@@ -94,6 +95,7 @@ export default {
 
         background-image: url("../assets/images/backgrounds/overview.jpg");
         background-position: center;
+        background-size: cover;
     }
 
     .title {
