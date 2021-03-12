@@ -2,25 +2,25 @@
   <div class="home">
     <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
     <div class="section text-danger" v-for="(section, i) in sections" :key="i">
-      <div class="container section">
-      <div class="row">
-        <div class="col-xl-6">
-          <div class="title">
-            <h1 v-html="section.title"></h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="title" data-aos="fade-right">
+              <h1 v-html="section.title"></h1>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="content" data-aos="fade-left">
+            <p v-html="section.content"></p>
+            </div>
           </div>
         </div>
-        <div class="col-xl-6">
-          <div class="content">
-           <p v-html="section.content"></p>
+        <div class="statistics" v-if="section.statistics">
+          <div class="statistic" :class="{'important': statistic.important}" v-for="(statistic, i) in section.statistics" :key="i" data-aos="fade-up" :data-aos-duration="500 * i">
+            <p class="title" v-html="statistic.title"></p>
+            <p class="value">{{ statistic.value }}</p>
           </div>
         </div>
-      </div>
-      <div class="statistics" v-if="section.statistics">
-        <div class="statistic" :class="{'important': statistic.important}" v-for="statistic in section.statistics" :key="statistic.value" >
-          <p class="title" v-html="statistic.title"></p>
-          <p class="value">{{ statistic.value }}</p>
-        </div>
-      </div>
     </div>
     </div>
   </full-page>
@@ -28,12 +28,11 @@
 </template>
 
 <script>
-
 export default {
   name: 'Home',
   data() {
     return {
-      currentIndex: 0,
+      index: 0,
       sections: [
         {
           title: "MASSIME <br /> PERFORMANCE",
@@ -72,11 +71,21 @@ export default {
         }
       ],
       options: {
+        afterLoad(_, data) {
+          if (data.index >= 1) {
+            let aos = document.querySelectorAll("[data-aos]")
+            aos.forEach((e) => {
+              e.classList.add("aos-animate")
+            })
+          }
+          
+        }
       },
     }
   },
   mounted() {
-    this.$refs.fullpage.init()
+    this.$refs.fullpage.init();
+
   },
   updated() {
     this.$refs.fullpage.init()

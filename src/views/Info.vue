@@ -22,7 +22,8 @@
             <li @click="changeInfo(index)" class="item" :style="{marginLeft: `-${index}rem`}" :class="{'active': index == menu_active}" v-for="(item, index) in menu" :key="item.title">{{ item.title }}</li>
         </div>
 
-        <div class="info-wrapper">
+        
+        <div class="info-wrapper animate__animated">
             <div class="info" v-for="item in infos[info_index].info" :key="item.title">
                 <p class="title" v-html="item.title"></p>
                 <p class="value">{{ item.value }}</p>
@@ -67,11 +68,11 @@ export default {
                     },
                     {
                         title: "potenza",
-                        value: "xxx cv",
+                        value: "335 cv",
                     },
                     {
                         title: "coppia",
-                        value: "xxx Nm",
+                        value: "515 Nm",
                     },
                     ]
                 },
@@ -79,19 +80,19 @@ export default {
                     info: [
                     {
                         title: "velocità max",
-                        value: "xxx km/h",
+                        value: "306 km/h",
                     },
                     {
-                        title: "accelerazione",
-                        value: "xxxx",
+                        title: "accelerazione 0/100",
+                        value: "3.05 sec",
+                    },
+                    {
+                        title: "accelerazione 100/200",
+                        value: "7.05 sec",
                     },
                     {
                         title: "frenata",
-                        value: "xxx",
-                    },
-                    {
-                        title: "accelerazione laterale",
-                        value: "xxxx",
+                        value: "100-0 36,1m",
                     },
                     ]
                 },
@@ -99,7 +100,7 @@ export default {
                     info: [
                     {
                         title: "pneumatici",
-                        value: "xxxx",
+                        value: "A:215/40/17 P:265/35/18",
                     },
                     {
                         title: "trazione",
@@ -107,11 +108,11 @@ export default {
                     },
                     {
                         title: "carreggiata",
-                        value: "xxxx",
+                        value: "A:215/40/17 P:265/35/18",
                     },
                     {
-                        title: "peso",
-                        value: "xxxx",
+                        title: "passo",
+                        value: "2380mm",
                     },
                     ]
                 }
@@ -131,24 +132,27 @@ export default {
         },
 
         changeInfo(index) {
-            console.log(index);
             this.menu_active = index;
-            this.info_index = index;
 
             let circle = document.getElementById("circle")
             let circle_dotted = document.getElementById("circle-dotted")
+            let info = document.getElementsByClassName("info-wrapper")[0]
 
-            console.log(circle)
-            console.log(circle_dotted)
 
             circle.classList.add("animate")
+
             circle_dotted.classList.add("animate-dotted")
+            info.classList.add("animate__fadeOutDown")
             setTimeout(() => {
-                circle.classList.remove("animate")
-            }, 800)
+                this.info_index = index
+                info.classList.remove("animate__fadeOutDown")
+                info.classList.add("animate__fadeInDown")
+            }, 1200)
             setTimeout(() => {  
                 circle_dotted.classList.remove("animate-dotted")
-            }, 1000)
+            }, 1700)
+
+            
         }
   }
 }
@@ -190,17 +194,16 @@ export default {
         .circle {
             margin-top: 10%;
             position: absolute;
-            // width: 50%;
             z-index: -1;
 
             .animate {
                 transform-origin: center;
-                animation: rotation 0.8s linear;
+                animation: rotation 1.5s linear;
             }
 
             .animate-dotted {
                 transform-origin: center;
-                animation: rotation 1s linear;
+                animation: rotation 1.7s linear;
             }
 
             
@@ -225,8 +228,9 @@ export default {
             top: 130%;
 
             .info {
+                width: 200px;
                 padding: 10px;
-                border-right: 2px white solid;
+                border-right: 2px solid white;
 
                 &:nth-last-child(1) {
                     border-right: none;
@@ -244,11 +248,11 @@ export default {
             }
             .value {
                 color: white;
-                font-size: 30px;
+                font-size: 28px;
                 font-weight: bold;
 
                 @media screen and (max-width: 1300px) {
-                font-size: 20px;
+                font-size: 18px;
             }
             }
             .text {
