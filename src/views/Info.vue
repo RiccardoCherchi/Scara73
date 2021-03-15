@@ -18,12 +18,12 @@
 
 
 
-        <div class="menu">
+        <div class="menu" data-aos="fade-right">
             <li @click="changeInfo(index)" class="item" :style="{marginLeft: `-${index}rem`}" :class="{'active': index == menu_active}" v-for="(item, index) in menu" :key="item.title">{{ item.title }}</li>
         </div>
 
         
-        <div class="info-wrapper animate__animated">
+        <div class="info-wrapper animate__animated" data-aos="fade-down">
             <div class="info" v-for="item in infos[info_index].info" :key="item.title">
                 <p class="title" v-html="item.title"></p>
                 <p class="value">{{ item.value }}</p>

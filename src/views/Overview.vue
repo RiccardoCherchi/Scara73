@@ -2,7 +2,7 @@
   <div class="home">
       <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
         <div class="section">
-            <div class="title">
+            <div class="title" data-aos="fade-right">
                 Cerchi forgiati di alta qualità per raggiungere il minor peso possibile con la maggior resistenza
             </div>
         </div>
@@ -19,39 +19,43 @@ export default {
             coordinates: [
                 {
                     x: 75,
-                    y: 78
+                    y: 78,
+                    text: "Finale in titanio a 3 uscite"
                 },
                 {
                     x: 71,
-                    y: 59
+                    y: 59,
+                    text: "cofano posteriore con carbon scoop studiato su misura per avere il massimo della leggerezza e delle performance di estrazione aria"
                 },
                 {
                     x: 63,
-                    y: 67
-                },
-                {
-                    x: 64,
-                    y: 78
+                    y: 67,
+                    text: "Ammortizzatori Ohlins STX realizzati su misura per l'auto con doppia regolazione in compressione ed estensione"
                 },
                 {
                     x: 46,
-                    y: 69
+                    y: 69,
+                    text: "Porte con pannelli carbonio integrati e vetri lexan"
                 },
                 {
                     x: 39,
-                    y: 58
+                    y: 58,
+                    text: "Parabrezza lexan per ridurre il peso di 3kg rispetto all’originale."
                 },
                 {
                     x: 29,
-                    y: 61
+                    y: 61,
+                    text: "Pneumatici semislick ad alte prestazioni"
                 },
                 {
                     x: 32,
-                    y: 78
+                    y: 78,
+                    text: "Pneumatici semislick ad alte prestazion"
                 },
                 {
                     x: 25,
-                    y: 85
+                    y: 85,
+                    text: "Cerchi forgiati di alta qualità per raggiungere il minor peso possibile con la maggior resistenza"
                 },
             ]
         }
@@ -65,7 +69,7 @@ export default {
             let point = home.appendChild(
                 document.createElement("div")
             );
-            point.className = "point";
+            point.classList.add("point", "animate__animated", "animate__fadeIn");
             point.style.position = "absolute";
             point.style.left = `${e.x}%`;
             point.style.top = `${e.y}%`;
@@ -74,6 +78,25 @@ export default {
                 document.createElement("img")
             )
             image.src = this.getImgUrl("point")
+
+            point.addEventListener("mouseenter", () => {
+                let pointText = point.appendChild(
+                    document.createElement("div")
+                )
+                pointText.classList.add("point-text")
+                pointText.style.visibility = "visible"
+                pointText.style.opacity = 1
+                pointText.style.width = "400px"
+                pointText.style.color = "white"
+                pointText.style.fontSize = "20px"
+                pointText.style.fontWeight = "bold"
+                pointText.textContent = e.text
+                pointText.style.margin = "-90px 0 0 50px"
+            })
+
+            point.addEventListener("mouseleave", (event) => {
+                point.removeChild(event.target.childNodes[1])
+            })
         })
         
     },
@@ -109,4 +132,11 @@ export default {
         font-size: 25px;
         font-weight: bold;
     }
+
+    .hidden {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s linear;
+    }
+
 </style>

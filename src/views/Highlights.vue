@@ -4,15 +4,15 @@
         <div class="section custom-container text-danger" v-for="section in sections" :key="section.title">
           <div class="custom-row">
             <div class="custom col">
-              <div class="title">
-                <h1>{{ section.title }}</h1>
+              <div class="title" data-aos="fade-in">
+                <h1 data-aos="fade-right">{{ section.title }}</h1>
               </div>
-              <div class="content-container">
+              <div class="content-container" data-aos="fade-right">
                 <p v-if="section.alternativeDescription" v-html="section.alternativeDescription"></p>
                 <p class="content" v-html="section.content"></p>
               </div>
             </div>
-            <div class="custom-col">
+            <div class="custom-col" data-aos="fade-left">
               <p class="description" v-html="section.description"></p>
               <div class="image"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
             </div>
@@ -54,7 +54,17 @@ export default {
         }
       ],
       options: {
-      }
+        afterLoad(_, data) {
+          if (data.index >= 1) {
+            let aos = document.querySelectorAll("[data-aos]")
+            aos.forEach((e) => {
+              e.classList.add("aos-animate")
+            })
+            
+          }
+          
+        }
+      },
     }
   },
 
