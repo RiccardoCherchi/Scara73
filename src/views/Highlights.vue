@@ -4,15 +4,15 @@
         <div class="section custom-container text-danger" v-for="section in sections" :key="section.title">
           <div class="custom-row">
             <div class="custom col">
-              <div class="title" data-aos="fade-in">
+              <div class="title" data-aos="fade-in" data-aos-duration="1500">
                 <h1 data-aos="fade-right">{{ section.title }}</h1>
               </div>
-              <div class="content-container" data-aos="fade-right">
+              <div class="content-container" data-aos="fade-right" data-aos-duration="1500">
                 <p v-if="section.alternativeDescription" v-html="section.alternativeDescription"></p>
                 <p class="content" v-html="section.content"></p>
               </div>
             </div>
-            <div class="custom-col" data-aos="fade-left">
+            <div class="custom-col" data-aos="fade-left" data-aos-duration="1500">
               <p class="description" v-html="section.description"></p>
               <div class="image"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
             </div>

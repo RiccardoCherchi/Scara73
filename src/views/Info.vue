@@ -18,16 +18,16 @@
 
 
 
-        <div class="menu" data-aos="fade-right">
+        <div class="menu" data-aos="fade-right" data-aos-duration="1500">
             <li @click="changeInfo(index)" class="item" :style="{marginLeft: `-${index}rem`}" :class="{'active': index == menu_active}" v-for="(item, index) in menu" :key="item.title">{{ item.title }}</li>
         </div>
 
         
-        <div class="info-wrapper animate__animated" data-aos="fade-down">
-            <div class="info" v-for="item in infos[info_index].info" :key="item.title">
-                <p class="title" v-html="item.title"></p>
-                <p class="value">{{ item.value }}</p>
-                <p class="text">{{ item.text }}</p>
+        <div class="info-wrapper animate__animated">
+            <div class="info" v-for="(item, i) in infos[info_index].info" :key="i">
+                <p class="title" :data-aos-duration="500 * i" data-aos="fade-down" v-html="item.title"></p>
+                <p class="value" :data-aos-duration="500 * i" data-aos="fade-down">{{ item.value }}</p>
+                <p class="text" :data-aos-duration="500 * i" data-aos="fade-down">{{ item.text }}</p>
             </div>
         </div>  
 

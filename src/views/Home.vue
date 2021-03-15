@@ -5,12 +5,12 @@
       <div class="container">
         <div class="row">
           <div class="col-xl-6">
-            <div class="title" data-aos="fade-right">
+            <div class="title" data-aos="fade-right" data-aos-duration="1500">
               <h1 v-html="section.title"></h1>
             </div>
           </div>
           <div class="col-xl-6">
-            <div class="content" data-aos="fade-left">
+            <div class="content" data-aos="fade-left" data-aos-duration="1500">
             <p v-html="section.content"></p>
             </div>
           </div>
