@@ -35,7 +35,7 @@ export default {
                 {
                     x: 46,
                     y: 69,
-                    text: "Porte con pannelli carbonio integrati e vetri lexan"
+                    text: "Porte con pannelli <br/>in carbonio integrati <br/>e vetri lexan"
                 },
                 {
                     x: 39,
@@ -45,7 +45,7 @@ export default {
                 {
                     x: 29,
                     y: 61,
-                    text: "Pneumatici semislick ad alte prestazioni"
+                    text: "Pneumatici semislick <br/>ad alte prestazioni"
                 },
                 {
                     x: 32,
@@ -90,7 +90,7 @@ export default {
                 pointText.style.color = "white"
                 pointText.style.fontSize = "20px"
                 pointText.style.fontWeight = "bold"
-                pointText.textContent = e.text
+                pointText.innerHTML = e.text
                 pointText.style.margin = "-90px 0 0 50px"
             })
 

@@ -17,7 +17,7 @@ export default {
       routes: [
         {
           name: "ALFA 4C",
-          to: "/"
+          to: "/home"
         },
         {
           name: "HIGHLIGHTS",

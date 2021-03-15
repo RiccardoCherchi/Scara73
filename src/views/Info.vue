@@ -53,7 +53,7 @@ export default {
                     title: "specifiche",
                 }
             ],
-            info_index: 1,
+            info_index: 0,
             infos: [
                 {
                     info: [
