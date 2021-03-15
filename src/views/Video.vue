@@ -15,7 +15,9 @@ export default {
         }
     },
     mounted() {
+        
         const v = document.getElementById("video")
+        v.play()
         v.addEventListener("seeked", () => {
             this.$router.push("/home")
         });
