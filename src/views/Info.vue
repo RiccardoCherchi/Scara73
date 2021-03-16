@@ -91,8 +91,8 @@ export default {
                         value: "7.05 sec",
                     },
                     {
-                        title: "frenata",
-                        value: "100-0 36,1m",
+                        title: "frenata 100/0",
+                        value: "36,1m",
                     },
                     ]
                 },

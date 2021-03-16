@@ -6,9 +6,9 @@
         <source v-if="width < 1480 && width >= 800" :src="getVidUrl('presentation720')" type="video/mp4">
         <source v-if="width >= 1480" :src="getVidUrl('presentation1080')" type="video/mp4">
     </video>
-    <!-- <div class="content">
+    <div class="content">
         <img :src="getImgUrl('title')" alt="">
-    </div> -->
+    </div>
     </div>
 </template>
 
@@ -44,20 +44,24 @@ export default {
 
 <style lang="scss" scoped>
 #video {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
-.content {
-  position: fixed;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
-  width: 100%;
-  padding: 20px;
+.content {  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    padding: 20px;
+    img {
+        width: 100px;
+    }
 }
 
 </style>

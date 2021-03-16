@@ -1,10 +1,9 @@
 <template>
-<div class="home" :style="{'backgroundImage': 'url(' + getBgImgUrl(sections[index].title) + ')'}">
+<div class="home">
   
     <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
         <div class="section custom-container text-danger" v-for="section in sections" :key="section.title">
           <span style="color: red">
-    index: {{ index }}
   </span>
           <div class="custom-row">
             <div class="custom col">
@@ -60,8 +59,16 @@ export default {
       ],
       options: {
         afterLoad(_, data) {
-          // this.changeIndex(data.index);
-          console.log(this.index);
+          const home = document.getElementsByClassName("home")[0]
+          const classes = ["carrozzeria", "sedili", "dettagli"]
+          
+          home.classList.add(classes[data.index])
+          classes.map((e, i) => {
+            if (i != data.index) {
+              home.classList.remove(e)
+            }
+          })
+
           if (data.index >= 1) {
             let aos = document.querySelectorAll("[data-aos]")
             aos.forEach((e) => {
@@ -114,6 +121,18 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &.carrozzeria {
+      background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
+    }
+
+    &.sedili {
+      background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
+    }
+
+    &.dettagli {
+      background-image: url("../assets/images/backgrounds/dettagli.jpg");
+    }
   }
 
   .custom-col {
