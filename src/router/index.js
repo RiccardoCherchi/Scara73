@@ -5,6 +5,7 @@ import Video from '../views/Video.vue';
 import Highlights from '../views/Highlights.vue';
 import Overview from '../views/Overview.vue';
 import Info from '../views/Info.vue';
+import Gallery from '../views/Gallery.vue';
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/scheda-tecnica',
     name: 'Info',
     component: Info,
+  },
+  {
+    path: '/galleria',
+    name: 'Galleria',
+    component: Gallery,
   }
 ]
 

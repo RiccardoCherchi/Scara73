@@ -1,14 +1,13 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
 
-import VueFullPage from 'vue-fullpage.js'
-
+import VueFullPage from 'vue-fullpage.js';
 import AOS from 'aos';
-import 'aos/dist/aos.css'
+
+import 'aos/dist/aos.css';
 
 Vue.use(VueFullPage);
-
 
 Vue.config.productionTip = false
 

@@ -15,6 +15,7 @@
     "vue": "^2.6.11",
     "vue-aos": "^1.1.0",
     "vue-fullpage.js": "^0.1.7",
+    "vue-owl-carousel": "^2.0.3",
     "vue-router": "^3.2.0",
     "vue2-hammer": "^2.1.2"
   },

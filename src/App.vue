@@ -33,7 +33,7 @@ export default {
         },
         {
           name: "GALLERY",
-          to: "#"
+          to: "/galleria"
         },
         {
           name: "360°",

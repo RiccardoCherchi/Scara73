@@ -70,7 +70,6 @@ export default {
                 document.createElement("div")
             );
             point.classList.add("point", "animate__animated", "animate__fadeIn");
-            point.style.position = "absolute";
             point.style.left = `${e.x}%`;
             point.style.top = `${e.y}%`;
 
@@ -84,14 +83,7 @@ export default {
                     document.createElement("div")
                 )
                 pointText.classList.add("point-text")
-                pointText.style.visibility = "visible"
-                pointText.style.opacity = 1
-                pointText.style.width = "400px"
-                pointText.style.color = "white"
-                pointText.style.fontSize = "20px"
-                pointText.style.fontWeight = "bold"
                 pointText.innerHTML = e.text
-                pointText.style.margin = "-90px 0 0 50px"
             })
 
             point.addEventListener("mouseleave", (event) => {
@@ -109,6 +101,19 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+    .point {
+        position: absolute;
+        .point-text {
+            width: 300px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin: -90px 0 0 50px;
+        }
+    }
+</style>
 
 <style lang="scss" scoped>
 

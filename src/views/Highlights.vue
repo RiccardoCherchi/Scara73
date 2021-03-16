@@ -1,7 +1,11 @@
 <template>
-<div class="home">
+<div class="home" :style="{'backgroundImage': 'url(' + getBgImgUrl(sections[index].title) + ')'}">
+  
     <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
         <div class="section custom-container text-danger" v-for="section in sections" :key="section.title">
+          <span style="color: red">
+    index: {{ index }}
+  </span>
           <div class="custom-row">
             <div class="custom col">
               <div class="title" data-aos="fade-in" data-aos-duration="1500">
@@ -27,9 +31,10 @@ export default {
   name: "Highlights",
   data() {
     return {
+      index: 0,
       sections: [
         {
-          title: "CARROZZERIA",
+          title: "carrozzeria",
           description: "Le parti che compongono la carrozzeria sono state realizzate interamente in <span style='color: #FCCE21'>fibra di carbonio</span> in autoclave. Oltre ad aver guadagnato in estetica, resistenza e leggerezza, la carrozzeria vanta di materiali all’avanguardia in termini tecnologici e costruttivi.",
           image: "carrozzeria",
           size: "100% !important",
@@ -37,7 +42,7 @@ export default {
           content: "Il cofano posteriore è stato studiato e realizzato su misura con carbon scoop per garantire il massimo delle performance di estrazione aria."
         },
         {
-          title: "SEDILI",
+          title: "sedili",
           description: null,
           image: "sedili",
           size: "450px",
@@ -45,7 +50,7 @@ export default {
           content: "L’Alcantara® è un materiale Made in Italy, uno dei più pregiati per le finiture delle auto."
         },
         {
-          title: "DETTAGLI",
+          title: "dettagli",
           alternativeDescription: null,
           image: "vite",
           size: "450px",
@@ -55,6 +60,8 @@ export default {
       ],
       options: {
         afterLoad(_, data) {
+          // this.changeIndex(data.index);
+          console.log(this.index);
           if (data.index >= 1) {
             let aos = document.querySelectorAll("[data-aos]")
             aos.forEach((e) => {
@@ -78,10 +85,18 @@ export default {
   },
 
   methods: {
+    changeIndex(index) {
+      console.log(index);
+      this.index = index;
+    },
 
     getImgUrl(image) {
       var images = require.context('@/assets/images/models/', false, /\.png$/)
       return images('./' + image + ".png")
+    },
+    getBgImgUrl(image) {
+      var images = require.context('@/assets/images/backgrounds/', false, /\.jpg$/)
+      return images('./' + image + ".jpg")
     }
   }
 }
@@ -99,7 +114,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
   }
 
   .custom-col {

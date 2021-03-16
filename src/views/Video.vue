@@ -1,9 +1,10 @@
 <template>
     <div class="home">
     <video autoplay loop muted id="video"> 
-        <source media="all and (max-witdth: 800px)" :src="getVidUrl('presentation720')" type="video/mp4">
-        <source media="all and (max-witdth: 1480px)" :src="getVidUrl('presentation1280')" type="video/mp4">
-        <source :src="getVidUrl('presentation1920')" type="video/mp4">
+
+        <source v-if="width < 800" :src="getVidUrl('presentation576')" type="video/mp4">
+        <source v-if="width < 1480 && width >= 800" :src="getVidUrl('presentation720')" type="video/mp4">
+        <source v-if="width >= 1480" :src="getVidUrl('presentation1080')" type="video/mp4">
     </video>
     <!-- <div class="content">
         <img :src="getImgUrl('title')" alt="">
@@ -16,10 +17,12 @@ export default {
     name: "Video",
     data() {
         return {
-
+            width: null
         }
     },
     mounted() {
+        this.width = window.innerWidth;
+
         const v = document.getElementById("video")
         v.play()
         v.addEventListener("seeked", () => {
