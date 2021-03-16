@@ -6,8 +6,8 @@
         <source v-if="width < 1480 && width >= 800" :src="getVidUrl('presentation720')" type="video/mp4">
         <source v-if="width >= 1480" :src="getVidUrl('presentation1080')" type="video/mp4">
     </video>
-    <div class="content">
-        <img :src="getImgUrl('title')" alt="">
+    <div class="content animate__animated animate__fadeIn animate__delay-2s" id="title">
+        <img :src="getImgUrl('title')" alt="title">
     </div>
     </div>
 </template>
@@ -28,6 +28,11 @@ export default {
         v.addEventListener("seeked", () => {
             this.$router.push("/home")
         });
+
+        const t = document.getElementById("title")
+        setTimeout( () => {
+            t.classList.add("animate__fadeOut")
+        }, 5000)
     },
     methods: {
         getVidUrl(video) {
@@ -56,11 +61,10 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.5);
     color: #f1f1f1;
     padding: 20px;
     img {
-        width: 100px;
+        width: 500px;
     }
 }
 
