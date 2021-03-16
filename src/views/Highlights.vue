@@ -128,27 +128,6 @@ export default {
 
     &.sedili {
       background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-        left: 0px;
-        background-image: url("../assets/images/backgrounds/dettagli.jpg");
-        opacity: 0;
-        animation: opacity 2s;
-
-        @keyframes opacity {
-          0% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-      }
     }
 
     &.dettagli {
