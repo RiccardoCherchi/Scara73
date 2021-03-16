@@ -40,7 +40,7 @@ export default {
         },
         {
           title: "MINIMO <br /> PESO",
-          content: "I vantaggi di un’auto alleggerita sono molteplici: migliora l’accelerazione, la frenata, l’inserimento in curva, si ottimizzano i consumi e aumenta la velocità di percorrenza. Per",
+          content: "I vantaggi di un’auto alleggerita sono molteplici:migliora l’accelerazione, la frenata, l’inserimento in curva, si ottimizzano i consumi e aumenta la velocità di percorrenza. Per arrivare a questi risultati sono state sostituite / rimosse gran parte delle componenti. Ecco i dati più rilevanti:",
           statistics: [
             {
               title: "BATTERIA <br>16,1 kg",

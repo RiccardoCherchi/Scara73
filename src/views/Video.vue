@@ -22,9 +22,23 @@ export default {
     },
     mounted() {
         this.width = window.innerWidth;
-
         const v = document.getElementById("video")
         v.play()
+
+
+        v.addEventListener("scroll", () => {
+            console.log('saa')
+            this.$router.push("/home")
+        })
+        
+        v.addEventListener("click", () => {
+            this.$router.push("/home")
+        })
+
+        v.addEventListener("touchend", () => {
+            this.$router.push("/home")
+        })
+
         v.addEventListener("seeked", () => {
             this.$router.push("/home")
         });

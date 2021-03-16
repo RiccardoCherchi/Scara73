@@ -59,19 +59,21 @@ export default {
             justify-content: space-between;
             img {
                 width: 90%;
-                margin-left: 5%;
+                margin-left: 10%;
             }
             .control {
                 display: inline-block;
                 border-right: 3px solid #ffffff5d;
                 border-bottom: 3px solid #ffffff5d;
-                width: 30px; height: 30px;
+                width: 20px; height: 20px;
             }
             .next {
                 transform: rotate(-45deg);
+                margin-left: 50px;
             }
             .prev {
                 transform: rotate(-225deg);
+                margin-right: 50px;
             }
         }
     }   
