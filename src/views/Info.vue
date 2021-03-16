@@ -23,11 +23,14 @@
         </div>
 
         
-        <div class="info-wrapper animate__animated">
+        <div class="info-wrapper">
             <div class="info" v-for="(item, i) in infos[info_index].info" :key="i">
-                <p class="title" :data-aos-duration="500 * i" data-aos="fade-down" v-html="item.title"></p>
-                <p class="value" :data-aos-duration="500 * i" data-aos="fade-down">{{ item.value }}</p>
-                <p class="text" :data-aos-duration="500 * i" data-aos="fade-down">{{ item.text }}</p>
+                <div class="wrapper animate__animated" :data-aos-duration="500 * i" data-aos="fade-down">
+                    <p class="title" v-html="item.title"></p>
+                    <p class="value">{{ item.value }}</p>
+                    <p class="text">{{ item.text }}</p>
+                </div>
+                
             </div>
         </div>  
 
@@ -136,17 +139,23 @@ export default {
 
             let circle = document.getElementById("circle")
             let circle_dotted = document.getElementById("circle-dotted")
-            let info = document.getElementsByClassName("info-wrapper")[0]
+            let wrappers = document.getElementsByClassName("wrapper")
 
 
             circle.classList.add("animate")
 
             circle_dotted.classList.add("animate-dotted")
-            info.classList.add("animate__fadeOutDown")
+            wrappers.forEach((e) => {
+                e.classList.add("animate__fadeOutDown")
+            })
             setTimeout(() => {
                 this.info_index = index
-                info.classList.remove("animate__fadeOutDown")
-                info.classList.add("animate__fadeInDown")
+                wrappers.forEach((e) => {
+                e.classList.remove("animate__fadeOutDown")
+            })
+                wrappers.forEach((e) => {
+                e.classList.add("animate__fadeInDown")
+            })
             }, 1200)
             setTimeout(() => {  
                 circle_dotted.classList.remove("animate-dotted")

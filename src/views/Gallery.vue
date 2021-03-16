@@ -1,8 +1,10 @@
 <template>
     <div class="home">
         <div class="slider">
-            <carousel :nav="false" :items="1" :center="true">
+            <carousel class="slide" :nav="false" :dots="false" :items="1" :center="true">
+                <template slot="prev"><div class="control prev"></div></template>
                 <img v-for="(slide, i) in slides" :key="i" :src="slide.image">
+                <template slot="next"><div class="control next"></div></template>
             </carousel>
         </div>
     </div>
@@ -51,9 +53,26 @@ export default {
     .slider {
         margin: 0 20%;
         padding-top: 5%;
-        img {
-            width: 90%;
-            margin-left: 5%;
+        .slide {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            img {
+                width: 90%;
+                margin-left: 5%;
+            }
+            .control {
+                display: inline-block;
+                border-right: 3px solid #ffffff5d;
+                border-bottom: 3px solid #ffffff5d;
+                width: 30px; height: 30px;
+            }
+            .next {
+                transform: rotate(-45deg);
+            }
+            .prev {
+                transform: rotate(-225deg);
+            }
         }
     }   
 </style>
