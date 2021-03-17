@@ -65,7 +65,7 @@ export default {
 
         const home = document.getElementsByClassName("home")[0];
 
-        this.coordinates.forEach((e) => {
+        this.coordinates.forEach((e, i) => {
             let point = home.appendChild(
                 document.createElement("div")
             );
@@ -82,7 +82,7 @@ export default {
                 let pointText = point.appendChild(
                     document.createElement("div")
                 )
-                pointText.classList.add("point-text")
+                pointText.classList.add("point-text", `point_${i}`)
                 pointText.innerHTML = e.text
             })
 
@@ -111,6 +111,31 @@ export default {
             font-size: 18px;
             font-weight: bold;
             margin: -90px 0 0 50px;
+            transform: translate(-100px, -200px);
+
+            &.point_7 {
+                transform: translate(-100px, -400px);  
+            }
+
+            &.point_2 {
+                transform: translate(-100px, -270px);  
+            }
+
+            &.point_3 {
+                transform: translate(-100px, -250px);  
+            }
+
+            &.point_4 {
+                transform: translate(-100px, -150px);
+            }
+
+            &.point_5 {
+                transform: translate(-100px, -150px);
+            }
+
+            &.point_6 {
+                transform: translate(-100px, -300px);
+            }
         }
     }
 </style>
