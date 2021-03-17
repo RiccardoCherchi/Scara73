@@ -63,33 +63,33 @@ export default {
 
     mounted() {
 
-        // const home = document.getElementsByClassName("home")[0];
+        const home = document.getElementsByClassName("home")[0];
 
-        // this.coordinates.forEach((e) => {
-        //     let point = home.appendChild(
-        //         document.createElement("div")
-        //     );
-        //     point.classList.add("point", "animate__animated", "animate__fadeIn");
-        //     point.style.left = `${e.x}%`;
-        //     point.style.top = `${e.y}%`;
+        this.coordinates.forEach((e) => {
+            let point = home.appendChild(
+                document.createElement("div")
+            );
+            point.classList.add("point", "animate__animated", "animate__fadeIn");
+            point.style.left = `${e.x}%`;
+            point.style.top = `${e.y}%`;
 
-        //     let image = point.appendChild(
-        //         document.createElement("img")
-        //     )
-        //     image.src = this.getImgUrl("point")
+            let image = point.appendChild(
+                document.createElement("img")
+            )
+            image.src = this.getImgUrl("point")
 
-        //     point.addEventListener("mouseenter", () => {
-        //         let pointText = point.appendChild(
-        //             document.createElement("div")
-        //         )
-        //         pointText.classList.add("point-text")
-        //         pointText.innerHTML = e.text
-        //     })
+            point.addEventListener("mouseenter", () => {
+                let pointText = point.appendChild(
+                    document.createElement("div")
+                )
+                pointText.classList.add("point-text")
+                pointText.innerHTML = e.text
+            })
 
-        //     point.addEventListener("mouseleave", (event) => {
-        //         point.removeChild(event.target.childNodes[1])
-        //     })
-        // })
+            point.addEventListener("mouseleave", (event) => {
+                point.removeChild(event.target.childNodes[1])
+            })
+        })
         
     },
 
