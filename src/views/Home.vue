@@ -24,6 +24,10 @@
     </div>
     </div>
   </full-page>
+  <div id="arrow" class="arrow">
+    <span>scroll</span>
+    <div class="arrow-svg"></div>
+  </div>
 </div>
 </template>
 
@@ -72,6 +76,13 @@ export default {
       ],
       options: {
         afterLoad(_, data) {
+
+          if (data.index == 1) {
+            document.getElementById("arrow").classList.add("arrow-hidden")
+          } else {
+            document.getElementById("arrow").classList.remove("arrow-hidden")
+          }
+
           if (data.index >= 1) {
             let aos = document.querySelectorAll("[data-aos]")
             aos.forEach((e) => {
@@ -159,6 +170,42 @@ export default {
   .content {
     color: white;
     font-size: 24px;
+  }
+}
+
+.arrow {
+  position: absolute;
+  top: 82%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: arrow 2.5s infinite ease-in-out;
+
+  @keyframes arrow {
+    to {
+      top: 87%;
+      opacity: 0;
+    }
+  }
+
+  &.arrow-hidden {
+    display: none;
+  }
+
+  
+
+  span {
+    display: block;
+    color: $primary_color;
+    font-size: 18px;
+  }
+
+  .arrow-svg {
+    display: block;
+    margin: 0 auto;
+    border-right: 3px solid $primary_color;
+    border-bottom: 3px solid $primary_color;
+    width: 20px; height: 20px;
+    transform: rotate(45deg);
   }
 }
   
