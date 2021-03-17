@@ -1,11 +1,11 @@
 <template>
   <div class="home">
       <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
-        <div class="section">
+        <!-- <div class="section">
             <div class="title" data-aos="fade-right" data-aos-duration="1500">
                 Cerchi forgiati di alta qualità per raggiungere il minor peso possibile con la maggior resistenza
             </div>
-        </div>
+        </div> -->
       </full-page>
   </div>
 </template>
