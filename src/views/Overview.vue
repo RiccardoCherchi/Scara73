@@ -63,7 +63,7 @@ export default {
 
     mounted() {
 
-        const home = document.getElementsByClassName("home")[0];
+        // const home = document.getElementsByClassName("home")[0];
 
         // this.coordinates.forEach((e) => {
         //     let point = home.appendChild(
