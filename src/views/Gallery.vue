@@ -37,7 +37,6 @@ export default {
                 image: r(value)
             })
         }
-        console.log(this.slides)
     }
     }
 }

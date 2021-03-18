@@ -1,28 +1,22 @@
 <template>
 <div class="home">
-  
-    <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
-        <div class="section custom-container text-danger" v-for="section in sections" :key="section.title">
-          <span style="color: red">
-  </span>
+        <div class="custom-container text-danger">
           <div class="custom-row">
             <div class="custom col">
-              <div class="title" data-aos="fade-in" data-aos-duration="1500">
-                <h1 data-aos="fade-right">{{ section.title }}</h1>
+              <div id="title-container" class="animate__animated title" data-aos="fade-in" data-aos-duration="1500">
+                <h1 id="title" class="animate__animated" data-aos="fade-right">{{ section.title }}</h1>
               </div>
-              <div class="content-container" data-aos="fade-right" data-aos-duration="1500">
+              <div id="content" class="content-container animate__animated" data-aos="fade-right" data-aos-duration="1500">
                 <p v-if="section.alternativeDescription" v-html="section.alternativeDescription"></p>
                 <p class="content" v-html="section.content"></p>
               </div>
             </div>
-            <div class="custom-col" data-aos="fade-left" data-aos-duration="1500">
+            <div id="description" class="custom-col animate__animated" data-aos="fade-left" data-aos-duration="1500">
               <p class="description" v-html="section.description"></p>
               <div class="image"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
             </div>
           </div>
         </div>
-    
-  </full-page>
 </div>
 </template>
 <script>
@@ -31,6 +25,7 @@ export default {
   data() {
     return {
       index: 0,
+      status: false,
       sections: [
         {
           title: "carrozzeria",
@@ -57,44 +52,135 @@ export default {
           content: "Una qualità del titanio è la sua resistenza alla corrosione, indispensabile per ridurre la tendenza all’ingranamento. <br><br> L’Ergal è una lega di alluminio e zinco, è la lega d'alluminio più leggera e, dal punto di vista meccanico, più resistente agli urti, agli sforzi, al peso e alla torsione."
         }
       ],
-      options: {
-        afterLoad(_, data) {
-          const home = document.getElementsByClassName("home")[0]
-          const classes = ["carrozzeria", "sedili", "dettagli"]
+      
+      // options: {
+      //   afterLoad(_, data) {
+      //     const home = document.getElementsByClassName("home")[0]
+      //     const classes = ["carrozzeria", "sedili", "dettagli"]
           
-          home.classList.add(classes[data.index])
-          classes.map((e, i) => {
-            if (i != data.index) {
-              home.classList.remove(e)
-            }
-          })
+      //     home.classList.add(classes[data.index])
+      //     classes.map((e, i) => {
+      //       if (i != data.index) {
+      //         home.classList.remove(e)
+      //       }
+      //     })
 
-          if (data.index >= 1) {
-            let aos = document.querySelectorAll("[data-aos]")
-            aos.forEach((e) => {
-              e.classList.add("aos-animate")
-            })
+      //     if (data.index >= 1) {
+      //       let aos = document.querySelectorAll("[data-aos]")
+      //       aos.forEach((e) => {
+      //         e.classList.add("aos-animate")
+      //       })
             
-          }
+      //     }
           
-        }
-      },
+      //   }
+      // },
+    }
+  },
+
+  computed: {
+    section() {
+      return this.sections[this.index];
     }
   },
 
   mounted() {
-    this.$refs.fullpage.init();
-       
+    window.addEventListener("wheel", this.handleScroll);
   },
 
-  updated() {
-    this.$refs.fullpage.init()
+  destroyed() {
+    window.removeEventListener("wheel", this.handleScroll);
   },
 
   methods: {
-    changeIndex(index) {
-      console.log(index);
-      this.index = index;
+
+    timedCount() {
+      setTimeout(() => {
+        this.status = false;
+      }, 1500);
+    },
+
+    startCount() {
+      if (!this.status) {
+        this.status = true;
+        this.timedCount();
+      }
+    },
+
+    handleScroll(event) {
+      const direction = event.deltaY;
+
+      
+    if (direction > 0) {
+      if (!this.status) {
+        const new_index = Math.min(this.sections.length - 1, this.index + 1)
+        this.setIndex(new_index)
+        console.log("next: " + new_index)
+        this.startCount();
+      }
+    } else {
+      if (!this.status) {
+        const new_index = Math.max(this.index - 1, 0)
+        this.setIndex(new_index)
+        console.log("back: " + new_index)
+        this.startCount();
+      }
+    }
+      
+    },
+
+    initAnimate() {
+      this.animate(true)
+
+      setTimeout(() => {
+        this.animate()
+      }, 1500)
+    },
+
+    setIndex(i) {
+      if (i != this.index) {
+        this.initAnimate()  
+      
+        setTimeout(() => {
+          this.index = i
+        }, 1500)
+      }
+    },
+
+    animate(exit = false) {
+      console.log("animate " + exit)
+      // elements to animate
+      // const titleContainer = document.getElementById("title-container"); // fade-in
+      const title = document.getElementById("title"); // fade-right
+      const content = document.getElementById("content"); // fade-right
+      const description = document.getElementById("description"); // fade-left
+
+      if (!exit) {
+        // titleContainer.classList.remove("animate__fadeOut")
+        // titleContainer.classList.add("animate__fadeIn")
+
+        title.classList.remove("animate__fadeOutLeft")
+        title.classList.add("animate__fadeInLeft")
+
+        content.classList.remove("animate__fadeOutLeft")
+        content.classList.add("animate__fadeInLeft")
+
+        description.classList.remove("animate__fadeOutRight")
+        description.classList.add("animate__fadeInRight")
+
+      } else{
+        // titleContainer.classList.remove("animate__fadeIn")
+        // titleContainer.classList.add("animate__fadeOut")
+
+        title.classList.remove("animate__fadeInLeft")
+        title.classList.add("animate__fadeOutLeft")
+
+        content.classList.remove("animate__fadeInLeft")
+        content.classList.add("animate__fadeOutLeft")
+
+        description.classList.remove("animate__fadeInRight")
+        description.classList.add("animate__fadeOutRight")
+      }
     },
 
     getImgUrl(image) {

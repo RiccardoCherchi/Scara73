@@ -111,7 +111,7 @@ export default {
                     },
                     {
                         title: "carreggiata",
-                        value: "A:215/40/17 P:265/35/18",
+                        value: "A:1649mm P:1622mm",
                     },
                     {
                         title: "passo",
@@ -139,6 +139,7 @@ export default {
 
             let circle = document.getElementById("circle")
             let circle_dotted = document.getElementById("circle-dotted")
+
             let wrappers = document.getElementsByClassName("wrapper")
 
 
@@ -159,6 +160,7 @@ export default {
             }, 1200)
             setTimeout(() => {  
                 circle_dotted.classList.remove("animate-dotted")
+                circle.classList.remove("animate")
             }, 1700)
 
             
@@ -185,7 +187,7 @@ export default {
 
     .custom-container {
         position: absolute;
-        top: 38%;
+        top: 37%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
