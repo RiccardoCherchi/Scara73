@@ -53,12 +53,12 @@ export default {
             },
             {
               title: "CERCHI <br>39,6 kg",
-              value: "27 kg",
+              value: "13.4 kg",
               important: false
             },
             {
               title: "SEDILI <br>18,3 kg",
-              value: "5 kg",
+              value: "2.5 kg",
               important: false
             },
             {

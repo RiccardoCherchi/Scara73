@@ -24,7 +24,7 @@ export default {
   name: "Highlights",
   data() {
     return {
-      index: 0,
+      index: 3,
       status: false,
       sections: [
         {
@@ -42,6 +42,22 @@ export default {
           size: "450px",
           alternativeDescription: "I sedili sono stati realizzati in <span style='color: #FCCE21'>carbonio</span> e <span style='color: #FCCE21'>Alcantara</span>, il peso è di 2,5kg l’uno.",
           content: "L’Alcantara® è un materiale Made in Italy, uno dei più pregiati per le finiture delle auto."
+        },
+        {
+          title: "finale",
+          description: "Il finale dell'auto è realtizzato in carbonio <span style='color: #FCCE21'>titanio</span> a 3 uscite e saldato a TIG in camera protetta",
+          image: "finale",
+          size: "450px",
+          alternativeDescription: null,
+          content: "Il titanio è estremamente leggero, resistente alla corrosione, si caratterizza per la sua elevata resistenza meccanica e la sua capacità di sostenere temperature estreme.",             
+        },
+        {
+          title: "sospensioni",
+          description: "Il massimo delle sospensioni non poteva essere altro che carbonio <span style='color: #FCCE21'>Ohlins</span>. 2 vie (compressione ed estensione separate), un carico di molle dedicato al peso dell'auto e una taratura appropriata. La collaborazione con Ohlins, permette di avere un prodotto \"cucito\" alla perfezione sull'auto.",
+          image: "sospensioni",
+          size: "400px",
+          alternativeDescription: null,
+          content: "",           
         },
         {
           title: "dettagli",
@@ -85,11 +101,24 @@ export default {
   },
 
   mounted() {
-    window.addEventListener("wheel", this.handleScroll);
+    // PC
+    window.addEventListener("wheel", (e) => {this.handleScroll(e.deltaY > 0)});
+
+    // Touch
+    let start;
+
+    window.addEventListener("touchstart", (e) => {
+      start = e.changedTouches[0];
+    })
+    window.addEventListener("touchend", (e) => {
+      this.handleScroll(e.changedTouches[0].screenY - start.screenY < 0)
+    })
   },
 
   destroyed() {
-    window.removeEventListener("wheel", this.handleScroll);
+    window.removeEventListener("wheel");
+    window.removeEventListener("touchstart");
+    window.removeEventListener("touchend");
   },
 
   methods: {
@@ -107,11 +136,10 @@ export default {
       }
     },
 
-    handleScroll(event) {
-      const direction = event.deltaY;
+    handleScroll(direction) {
 
       
-    if (direction > 0) {
+    if (direction) {
       if (!this.status) {
         const new_index = Math.min(this.sections.length - 1, this.index + 1)
         this.setIndex(new_index)
@@ -151,9 +179,15 @@ export default {
       console.log("animate " + exit)
       // elements to animate
       // const titleContainer = document.getElementById("title-container"); // fade-in
+      const home = document.getElementsByClassName("home")[0]
       const title = document.getElementById("title"); // fade-right
       const content = document.getElementById("content"); // fade-right
       const description = document.getElementById("description"); // fade-left
+
+      home.classList.add("animate")
+      setTimeout(() => {
+        home.classList.remove("animate");
+      }, 1000)
 
       if (!exit) {
         // titleContainer.classList.remove("animate__fadeOut")
