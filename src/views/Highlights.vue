@@ -1,5 +1,5 @@
 <template>
-<div class="home">
+<div class="home" :class="section.title">
         <div class="custom-container text-danger">
           <div class="custom-row">
             <div class="custom col">
@@ -33,7 +33,7 @@ export default {
           image: "carrozzeria",
           size: "100% !important",
           alternativeDescription: null,
-          content: "Il cofano posteriore è stato studiato e realizzato su misura con carbon scoop per garantire il massimo delle performance di estrazione aria."
+          content: "Il cofano posteriore è stato integrato con uno scoop in carbonio molto leggero e appositamente studiato per avere un'ottima estrazione di aria. Riducendo il peso delle parti lontane dal suolo si abbassa il baricentro dell'auto con conseguente miglioramento dinamico dell'auto in ogni condizione."
         },
         {
           title: "sedili",
@@ -65,32 +65,9 @@ export default {
           image: "vite",
           size: "450px",
           description: "Dettagli visibili o nascosti, anche le più piccole componenti sono state sostituite per contribuire all’alleggerimento dell’auto, dai dischi freno anteriori e posteriori ai poggiapiedi del pilota e del passeggero. Solo pensando che tutte le viti in ferro originali sono state sostituite con altre in <span style='color: #FCCE21'>ergal</span> e <span style='color: #FCCE21'>titanio</span> si può intuire quanto il lavoro sia stato professionale, preciso, minuzioso.",
-          content: "Una qualità del titanio è la sua resistenza alla corrosione, indispensabile per ridurre la tendenza all’ingranamento. <br><br> L’Ergal è una lega di alluminio e zinco, è la lega d'alluminio più leggera e, dal punto di vista meccanico, più resistente agli urti, agli sforzi, al peso e alla torsione."
+          content: "Le qualità del titanio sono la sua resistenza alla corrosione e la sua leggerezza con pari resistenza a quella dell'acciaio <br><br> L’Ergal è una lega di alluminio e zinco, è la lega d'alluminio più leggera e, dal punto di vista meccanico, più resistente agli urti, agli sforzi, al peso e alla torsione."
         }
       ],
-      
-      // options: {
-      //   afterLoad(_, data) {
-      //     const home = document.getElementsByClassName("home")[0]
-      //     const classes = ["carrozzeria", "sedili", "dettagli"]
-          
-      //     home.classList.add(classes[data.index])
-      //     classes.map((e, i) => {
-      //       if (i != data.index) {
-      //         home.classList.remove(e)
-      //       }
-      //     })
-
-      //     if (data.index >= 1) {
-      //       let aos = document.querySelectorAll("[data-aos]")
-      //       aos.forEach((e) => {
-      //         e.classList.add("aos-animate")
-      //       })
-            
-      //     }
-          
-      //   }
-      // },
     }
   },
 
@@ -236,6 +213,14 @@ export default {
     }
 
     &.sedili {
+      background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
+    }
+
+    &.finale {
+      background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
+    }
+
+    &.sospensioni {
       background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
     }
 

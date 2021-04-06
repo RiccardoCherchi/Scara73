@@ -199,7 +199,22 @@ export default {
         align-items: center;
 
         .start {
+            margin-bottom: 5%;
+
             width: 15%;
+            animation: pulse 2s infinite ease;
+
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                } 
+                50% {
+                    transform: scale(1.1);
+                } 
+                100% {
+                    translate: scale(1);
+                }
+            }
         }
 
         .circle {

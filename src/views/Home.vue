@@ -40,7 +40,7 @@ export default {
       sections: [
         {
           title: "MASSIME <br /> PERFORMANCE",
-          content: "Per garantire il massimo delle performance possibili la <span style='color: #FCCE21'>mappa motore</span> e la <span style='color: #FCCE21'>mappa cambio</span> sono state sviluppate direttamente sull’auto. <br><br><span style='color: #FCCE21'>L’intercooler maggiorato</span> aumenta la pressione di sovralimentazione mantenedo neutrale l’aumento della temperatura che ne deriverebbe. <br><br>Il downpipe originale è stato sostituito con un <span style='color: #FCCE21'>downpipe con kat 200celle</span> per migliorare ulteriormente le prestazioni dell’auto."
+          content: "Per garantire il massimo delle performance possibili la <span style='color: #FCCE21'>mappa motore</span> e la <span style='color: #FCCE21'>mappa cambio</span> sono state sviluppate direttamente sull’auto. <br><br> <span style='color: #FCCE21'>L’intercooler maggiorato</span> riesce a tenere sotto controllo le temperature che vengono generate dall'aumento di prestazioni. Lo stesso e' stato sviluppato con massa radiante motorsport con vaschetta inferiore realizzata di CNC e vaschetta superiore in carbonio liscia dentro per avere una fluidodinamica eccelsa e una efficienza termica ineguagliabile. <br><br>Il downpipe originale è stato sostituito con un <span style='color: #FCCE21'>downpipe con kat 200celle</span> per migliorare ulteriormente le prestazioni dell’auto."
         },
         {
           title: "MINIMO <br /> PESO",
