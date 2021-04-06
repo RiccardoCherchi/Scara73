@@ -6,6 +6,7 @@ import Highlights from '../views/Highlights.vue';
 import Overview from '../views/Overview.vue';
 import Info from '../views/Info.vue';
 import Gallery from '../views/Gallery.vue';
+import Presentation from '../views/Presentation.vue';
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,11 @@ const routes = [
     path: '/',
     name: 'Video',
     component: Video
+  },
+  {
+    path: '/presentazione',
+    name: 'presentation',
+    component: Presentation
   },
   {
     path: '/home',

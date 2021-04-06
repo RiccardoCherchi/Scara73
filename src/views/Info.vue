@@ -123,7 +123,23 @@ export default {
         }
     },
 
+    mounted() {
+        window.addEventListener("wheel", (e) => {this.handleScroll(e.deltaY > 0)});
+    },
+
+    destroyed() {
+        window.removeEventListener("wheel", this.handleScroll);
+    },
+
     methods: {
+
+        handleScroll(direction) {
+            if (direction) {
+                this.changeInfo(Math.min(this.infos.length - 1, this.info_index + 1))
+            } else {
+                this.changeInfo(Math.max(this.info_index - 1, 0))
+            }
+        },
 
         getImgUrl(image) {
         var images = require.context('@/assets/images/elements/', false)
@@ -135,35 +151,35 @@ export default {
         },
 
         changeInfo(index) {
-            this.menu_active = index;
+            if (index != this.info_index) {
+                this.menu_active = index;
 
-            let circle = document.getElementById("circle")
-            let circle_dotted = document.getElementById("circle-dotted")
+                let circle = document.getElementById("circle")
+                let circle_dotted = document.getElementById("circle-dotted")
 
-            let wrappers = document.getElementsByClassName("wrapper")
+                let wrappers = document.getElementsByClassName("wrapper")
 
 
-            circle.classList.add("animate")
+                circle.classList.add("animate")
 
-            circle_dotted.classList.add("animate-dotted")
-            wrappers.forEach((e) => {
-                e.classList.add("animate__fadeOutDown")
-            })
-            setTimeout(() => {
-                this.info_index = index
+                circle_dotted.classList.add("animate-dotted")
                 wrappers.forEach((e) => {
-                e.classList.remove("animate__fadeOutDown")
-            })
-                wrappers.forEach((e) => {
-                e.classList.add("animate__fadeInDown")
-            })
-            }, 1200)
-            setTimeout(() => {  
-                circle_dotted.classList.remove("animate-dotted")
-                circle.classList.remove("animate")
-            }, 1700)
-
-            
+                    e.classList.add("animate__fadeOutDown")
+                })
+                setTimeout(() => {
+                    this.info_index = index
+                    wrappers.forEach((e) => {
+                    e.classList.remove("animate__fadeOutDown")
+                })
+                    wrappers.forEach((e) => {
+                    e.classList.add("animate__fadeInDown")
+                })
+                }, 1200)
+                setTimeout(() => {  
+                    circle_dotted.classList.remove("animate-dotted")
+                    circle.classList.remove("animate")
+                }, 1700)
+            }
         }
   }
 }

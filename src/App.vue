@@ -16,6 +16,10 @@ export default {
     return {
       routes: [
         {
+          name: "PRESENTAZIONE",
+          to: "/presentazione"
+        },
+        {
           name: "ALFA 4C",
           to: "/home"
         },
