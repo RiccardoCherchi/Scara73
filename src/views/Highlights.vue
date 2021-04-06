@@ -142,34 +142,34 @@ export default {
     if (direction) {
       if (!this.status) {
         const new_index = Math.min(this.sections.length - 1, this.index + 1)
-        this.setIndex(new_index)
-        console.log("next: " + new_index)
+        this.setIndex(new_index, direction)
+        // console.log("next: " + new_index)
         this.startCount();
       }
     } else {
       if (!this.status) {
         const new_index = Math.max(this.index - 1, 0)
-        this.setIndex(new_index)
-        console.log("back: " + new_index)
+        this.setIndex(new_index, direction)
+        // console.log("back: " + new_index)
         this.startCount();
       }
     }
       
     },
 
-    initAnimate() {
-      this.animate(true)
+    initAnimate(direction) {
+      this.animate(direction, true)
 
       setTimeout(() => {
-        this.animate()
+        this.animate(direction)
       }, 2000)
     },
 
 
 
-    setIndex(i) {
+    setIndex(i, direction) {
       if (i != this.index) {
-        this.initAnimate()  
+        this.initAnimate(direction)  
       
         setTimeout(() => {
           this.index = i
@@ -177,60 +177,30 @@ export default {
       }
     },
 
-    // animate(exit = false) {
-    //   console.log("animate " + exit)
-    //   // elements to animate
-    //   // const titleContainer = document.getElementById("title-container"); // fade-in
-    //   const home = document.getElementsByClassName("home")[0]
-    //   const title = document.getElementById("title"); // fade-right
-    //   const content = document.getElementById("content"); // fade-right
-    //   const description = document.getElementById("description"); // fade-left
-
-    //   home.classList.add("animate")
-    //   setTimeout(() => {
-    //     home.classList.remove("animate");
-    //   }, 1000)
-
-    //   if (!exit) {
-    //     // titleContainer.classList.remove("animate__fadeOut")
-    //     // titleContainer.classList.add("animate__fadeIn")
-
-    //     title.classList.remove("animate__fadeOutLeft")
-    //     title.classList.add("animate__fadeInLeft")
-
-    //     content.classList.remove("animate__fadeOutLeft")
-    //     content.classList.add("animate__fadeInLeft")
-
-    //     description.classList.remove("animate__fadeOutRight")
-    //     description.classList.add("animate__fadeInRight")
-
-    //   } else{
-    //     // titleContainer.classList.remove("animate__fadeIn")
-    //     // titleContainer.classList.add("animate__fadeOut")
-
-    //     title.classList.remove("animate__fadeInLeft")
-    //     title.classList.add("animate__fadeOutLeft")
-
-    //     content.classList.remove("animate__fadeInLeft")
-    //     content.classList.add("animate__fadeOutLeft")
-
-    //     description.classList.remove("animate__fadeInRight")
-    //     description.classList.add("animate__fadeOutRight")
-    //   }
-    // },
-
-    animate(exit = false) {
+    animate(direction, exit = false) {
 
       const container = document.getElementsByClassName("custom-container")[0]
 
       if (exit) {
-        container.classList.add("slide-animation-left")
-        setTimeout(() => {
-          container.classList.remove("slide-animation-left")
-          container.classList.add("slide-animation-right")
-        }, 750)
+        if (direction) {
+          console.log("next")
+          container.classList.add("next-slide-animation-left")
+          setTimeout(() => {
+            container.classList.remove("next-slide-animation-left")
+            container.classList.add("next-slide-animation-right")
+          }, 750)
+        } else {
+          console.log("back")
+          container.classList.add("back-slide-animation-left")
+          setTimeout(() => {
+            container.classList.remove("back-slide-animation-left")
+            container.classList.add("back-slide-animation-right")
+          }, 750)
+        }
+        
       } else {
-        container.classList.remove("slide-animation-right")
+        container.classList.remove("next-slide-animation-right")
+        container.classList.remove("back-slide-animation-right")
       }
 
       console.log(exit)
@@ -307,22 +277,45 @@ export default {
     grid-gap: 10%;
   }
 
-  .slide-animation-left {
-    animation: slider-left 1000ms;
+  .next-slide-animation-left {
+    animation: next-slider-left 1000ms;
 
-    @keyframes slider-left {
+    @keyframes next-slider-left {
       to {
         transform: translateX(-200%);
       }
     }
   }
 
-  .slide-animation-right {
-    animation: slider-right 1000ms;
+  .next-slide-animation-right {
+    animation: next-slider-right 1000ms;
 
-    @keyframes slider-right {
+    @keyframes next-slider-right {
       from {
-        transform: translateX(100%);
+        transform: translateX(200%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  .back-slide-animation-left {
+    animation: back-slider-left 1000ms;
+
+    @keyframes back-slider-left {
+      to {
+        transform: translateX(200%);
+      }
+    }
+  }
+
+  .back-slide-animation-right {
+    animation: back-slider-right 1000ms;
+
+    @keyframes back-slider-right {
+      from {
+        transform: translateX(-200%);
       }
       to {
         transform: translateX(0);
