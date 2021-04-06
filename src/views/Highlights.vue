@@ -24,7 +24,7 @@ export default {
   name: "Highlights",
   data() {
     return {
-      index: 3,
+      index: 0,
       status: false,
       sections: [
         {
@@ -126,7 +126,7 @@ export default {
     timedCount() {
       setTimeout(() => {
         this.status = false;
-      }, 1500);
+      }, 2000);
     },
 
     startCount() {
@@ -162,8 +162,10 @@ export default {
 
       setTimeout(() => {
         this.animate()
-      }, 1500)
+      }, 2000)
     },
+
+
 
     setIndex(i) {
       if (i != this.index) {
@@ -171,50 +173,67 @@ export default {
       
         setTimeout(() => {
           this.index = i
-        }, 1500)
+        }, 500)
       }
     },
 
+    // animate(exit = false) {
+    //   console.log("animate " + exit)
+    //   // elements to animate
+    //   // const titleContainer = document.getElementById("title-container"); // fade-in
+    //   const home = document.getElementsByClassName("home")[0]
+    //   const title = document.getElementById("title"); // fade-right
+    //   const content = document.getElementById("content"); // fade-right
+    //   const description = document.getElementById("description"); // fade-left
+
+    //   home.classList.add("animate")
+    //   setTimeout(() => {
+    //     home.classList.remove("animate");
+    //   }, 1000)
+
+    //   if (!exit) {
+    //     // titleContainer.classList.remove("animate__fadeOut")
+    //     // titleContainer.classList.add("animate__fadeIn")
+
+    //     title.classList.remove("animate__fadeOutLeft")
+    //     title.classList.add("animate__fadeInLeft")
+
+    //     content.classList.remove("animate__fadeOutLeft")
+    //     content.classList.add("animate__fadeInLeft")
+
+    //     description.classList.remove("animate__fadeOutRight")
+    //     description.classList.add("animate__fadeInRight")
+
+    //   } else{
+    //     // titleContainer.classList.remove("animate__fadeIn")
+    //     // titleContainer.classList.add("animate__fadeOut")
+
+    //     title.classList.remove("animate__fadeInLeft")
+    //     title.classList.add("animate__fadeOutLeft")
+
+    //     content.classList.remove("animate__fadeInLeft")
+    //     content.classList.add("animate__fadeOutLeft")
+
+    //     description.classList.remove("animate__fadeInRight")
+    //     description.classList.add("animate__fadeOutRight")
+    //   }
+    // },
+
     animate(exit = false) {
-      console.log("animate " + exit)
-      // elements to animate
-      // const titleContainer = document.getElementById("title-container"); // fade-in
-      const home = document.getElementsByClassName("home")[0]
-      const title = document.getElementById("title"); // fade-right
-      const content = document.getElementById("content"); // fade-right
-      const description = document.getElementById("description"); // fade-left
 
-      home.classList.add("animate")
-      setTimeout(() => {
-        home.classList.remove("animate");
-      }, 1000)
+      const container = document.getElementsByClassName("custom-container")[0]
 
-      if (!exit) {
-        // titleContainer.classList.remove("animate__fadeOut")
-        // titleContainer.classList.add("animate__fadeIn")
-
-        title.classList.remove("animate__fadeOutLeft")
-        title.classList.add("animate__fadeInLeft")
-
-        content.classList.remove("animate__fadeOutLeft")
-        content.classList.add("animate__fadeInLeft")
-
-        description.classList.remove("animate__fadeOutRight")
-        description.classList.add("animate__fadeInRight")
-
-      } else{
-        // titleContainer.classList.remove("animate__fadeIn")
-        // titleContainer.classList.add("animate__fadeOut")
-
-        title.classList.remove("animate__fadeInLeft")
-        title.classList.add("animate__fadeOutLeft")
-
-        content.classList.remove("animate__fadeInLeft")
-        content.classList.add("animate__fadeOutLeft")
-
-        description.classList.remove("animate__fadeInRight")
-        description.classList.add("animate__fadeOutRight")
+      if (exit) {
+        container.classList.add("slide-animation-left")
+        setTimeout(() => {
+          container.classList.remove("slide-animation-left")
+          container.classList.add("slide-animation-right")
+        }, 750)
+      } else {
+        container.classList.remove("slide-animation-right")
       }
+
+      console.log(exit)
     },
 
     getImgUrl(image) {
@@ -286,6 +305,29 @@ export default {
     display: grid;
     grid-template-columns: 0.7fr auto;
     grid-gap: 10%;
+  }
+
+  .slide-animation-left {
+    animation: slider-left 1000ms;
+
+    @keyframes slider-left {
+      to {
+        transform: translateX(-200%);
+      }
+    }
+  }
+
+  .slide-animation-right {
+    animation: slider-right 1000ms;
+
+    @keyframes slider-right {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
   }
 
   .custom-container {
