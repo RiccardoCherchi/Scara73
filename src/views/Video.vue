@@ -47,6 +47,14 @@ export default {
             t.classList.add("animate__fadeOut")
         }, 5000)
     },
+
+    destroyed() {
+        document.removeEventListener("touchend");
+        document.removeEventListener("click");
+        document.removeEventListener("seeked");
+
+    },
+
     methods: {
         getVidUrl(video) {
             var videos = require.context('@/assets/videos/', false, /\.mp4$/)
