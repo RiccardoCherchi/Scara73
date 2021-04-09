@@ -27,20 +27,19 @@ export default {
 
 
         v.addEventListener("scroll", () => {
-            console.log('saa')
-            this.$router.push("/home")
+            this.$router.push("/presentazione")
         })
         
         v.addEventListener("click", () => {
-            this.$router.push("/home")
+            this.$router.push("/presentazione")
         })
 
         v.addEventListener("touchend", () => {
-            this.$router.push("/home")
+            this.$router.push("/presentazione")
         })
 
         v.addEventListener("seeked", () => {
-            this.$router.push("/home")
+            this.$router.push("/presentazione")
         });
 
         const t = document.getElementById("title")

@@ -5,11 +5,19 @@
         <p class="description">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae, illum iure commodi, qui nihil accusantium deleniti maiores nam, distinctio soluta repellat fugit repudiandae necessitatibus! Unde, consequatur doloremque iste quidem eos hic laboriosam odit repellendus itaque vel harum reprehenderit blanditiis sunt provident quisquam laudantium, accusamus ex voluptatibus, excepturi debitis magni dolor. Ullam dignissimos atque nesciunt aperiam ipsum sint voluptatem tenetur rem non repellendus minima, velit incidunt harum sequi earum provident praesentium deleniti placeat repellat culpa animi itaque eum consequuntur. In dignissimos vitae exercitationem consectetur labore voluptatem fugiat amet laudantium ex nobis! Corrupti voluptatibus modi at reprehenderit atque officiis odio ex incidunt?
         </p>
+        <horizontal-scroll>
+          <div style="margin-left: 100px">22</div>
+          <div style="margin-left: 100px">22</div>
+          <div style="margin-left: 100px">22</div>
+          <div style="margin-left: 100px">22</div>
+          <div style="margin-left: 100px">22</div>
+        </horizontal-scroll>
       </div>
   </div>
 </template>
 
 <script>
+
 export default {
     name: "Presentation",
     data() {
@@ -57,9 +65,7 @@ export default {
 
         .description {
             margin-top: 3%;
-            color: white;
             width: 80%;
-            font-size: 20px;
         }
 
         .title {
@@ -69,8 +75,9 @@ export default {
 
     @media screen and (max-width: 768px) {
             .content {
-                width: 100%;
-                padding-top: 20px;
+                margin-left: 10px;
+                width: 95%;
+                padding-top: 18px;
             }
 
             .description {
@@ -78,7 +85,7 @@ export default {
             }
 
             .title {
-                width: 100%;
+                width: 90%;
             }
         }
 

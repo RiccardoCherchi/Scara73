@@ -16,10 +16,10 @@
           </div>
         </div>
         <div class="statistics" v-if="section.statistics">
-          <div class="statistic" :class="{'important': statistic.important}" v-for="(statistic, i) in section.statistics" :key="i" data-aos="fade-up" :data-aos-duration="500 * i">
-            <p class="title" v-html="statistic.title"></p>
-            <p class="value">{{ statistic.value }}</p>
-          </div>
+            <div class="statistic" :class="{'important': statistic.important}" v-for="(statistic, i) in section.statistics" :key="i" data-aos="fade-up" :data-aos-duration="500 * i">
+              <p class="title" v-html="statistic.title"></p>
+              <p class="value">{{ statistic.value }}</p>
+            </div>
         </div>
     </div>
     </div>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Home',
   data() {
@@ -123,12 +124,20 @@ export default {
   .statistics {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
     margin-top: 10%;
 
+    overflow: hidden;
+    white-space: nowrap;
+
+    @media screen and (max-width: 992px) {
+      display: block;
+      overflow-x: scroll;
+    }
+
     .statistic {
+      display: inline-block;
       padding: 20px;
-      margin: 15px;
+      margin: 20px;
       p {
         margin: 0;
       }
@@ -163,6 +172,10 @@ export default {
       color: $primary_color;
       font-weight: 400;
       font-size: 4rem;
+      
+      @media screen and (max-width: 576px) {
+        font-size: 2.5rem;
+      }
     }
     
   }
@@ -170,6 +183,10 @@ export default {
   .content {
     color: white;
     font-size: 24px;
+
+    @media screen and (max-width: 576px) {
+      font-size: 18px;
+    }
   }
 }
 
@@ -206,6 +223,10 @@ export default {
     border-bottom: 3px solid $primary_color;
     width: 20px; height: 20px;
     transform: rotate(45deg);
+  }
+
+  @media screen and (max-width: 992px) {
+    display: none;
   }
 }
   
