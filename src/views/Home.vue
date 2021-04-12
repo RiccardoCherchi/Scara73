@@ -96,11 +96,11 @@ export default {
     }
   },
   mounted() {
-    // this.$refs.fullpage.init();
+    this.$refs.fullpage.init();
 
   },
   updated() {
-    // this.$refs.fullpage.init()
+    this.$refs.fullpage.init()
 
   },
   
@@ -117,8 +117,6 @@ export default {
   display: flex;
   align-items: center;
   background-image: url("../assets/images/backgrounds/cofano.jpg");
-
-  // max-width: 360px;
 }
 
 .container{

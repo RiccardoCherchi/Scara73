@@ -1,21 +1,21 @@
 <template>
   <div id="app">
+
+    <div id="openNavbarButton" class="open">
+      <i class="bx bx-menu"></i>
+    </div>
+
     <div id="mobile-nav">
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#"></a>
-          <button id="navButton" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item" v-for="route in routes" :key="route.name">
-                <router-link class="nav-link" :to="route.to">{{ route.name }}</router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <div id="closeButton" class="close">
+        <i class='bx bx-x'></i>
+      </div>
+      <div class="items">
+        <ul class="links">
+          <li class="link" v-for="route in routes" :key="route.name">
+            <router-link :to="route.to">{{ route.name }}</router-link>
+          </li>
+        </ul>
+      </div>
     </div>
     <router-view/>
     <div id="nav">
@@ -76,11 +76,35 @@ export default {
         document.getElementById("navButton").click()
       })
     });
+
+    const mobileNav = document.getElementById("mobile-nav")
+
+    // open
+    const openNavbarButton = document.getElementById("openNavbarButton")
+    
+    openNavbarButton.addEventListener("click", () => {
+      mobileNav.classList.add("open-animation")
+    })
+
+    // close
+    const closeButton = document.getElementById("closeButton")
+    const links = document.getElementsByClassName("link")
+
+    closeButton.addEventListener("click", () => {
+      mobileNav.classList.remove("open-animation")
+    })
+    links.forEach((e) => {
+      e.addEventListener("click", () => {
+      mobileNav.classList.remove("open-animation")
+      })
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "./assets/scss/variables.scss";
+
 #nav {
   display: flex;
   align-items: center;
@@ -120,21 +144,54 @@ export default {
   }
 }
 
+.open {
+  position: absolute;
+  right: 10px;
+  z-index: 100;
+
+  color: #acacac;
+  font-size: 50px;
+}
+
 #mobile-nav {
+  position: fixed;
   width: 100%;
+  height: 100vh;
+  z-index: 100;
 
-  background-color: rgba(0,0,0,1);
+  background-color: $bg_color;
+  
+  transition: transform 500ms ease;
+  transform: translateX(100%);
 
-  .navbar-toggler {
-    background-color: black;
+  &.open-animation {
+    transform: translateX(0);
+  }
 
-    border: none;
-    outline: 0;
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 
-    &:focus {
-      outline: 0;
-      border: 0;
-      box-shadow: none;
+    i {
+      font-size: 50px;
+      color: white;
+    }
+  }
+
+  li.link {
+    list-style-type: none;
+    margin: 25px 0;
+
+    a {
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      font-size: 30px;
+
+      &.router-link-exact-active {
+        color: orange;
+      }
     }
   }
 

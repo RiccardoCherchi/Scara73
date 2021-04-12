@@ -48,10 +48,14 @@ export default {
         width: 80%;
         margin: 0 auto;
         padding-top: 5%;
+
     }
 
     .title {
         width: 40%;
+        @media screen and (max-width: 992px) {
+            margin-top: 50px;
+        }
     }
 
     .description {

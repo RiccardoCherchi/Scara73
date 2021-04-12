@@ -150,7 +150,7 @@ export default {
       
         setTimeout(() => {
           this.index = i
-        }, 500)
+        }, 1000)
       }
     },
 
@@ -165,14 +165,14 @@ export default {
           setTimeout(() => {
             container.classList.remove("next-slide-animation-left")
             container.classList.add("next-slide-animation-right")
-          }, 750)
+          }, 1000)
         } else {
           console.log("back")
           container.classList.add("back-slide-animation-left")
           setTimeout(() => {
             container.classList.remove("back-slide-animation-left")
             container.classList.add("back-slide-animation-right")
-          }, 750)
+          }, 1000)
         }
         
       } else {
@@ -267,7 +267,7 @@ export default {
 
     @keyframes next-slider-left {
       to {
-        transform: translateX(-200%);
+        transform: translateX(-100%);
       }
     }
   }
@@ -277,7 +277,7 @@ export default {
 
     @keyframes next-slider-right {
       from {
-        transform: translateX(200%);
+        transform: translateX(100%);
       }
       to {
         transform: translateX(0);
@@ -290,7 +290,7 @@ export default {
 
     @keyframes back-slider-left {
       to {
-        transform: translateX(200%);
+        transform: translateX(100%);
       }
     }
   }
@@ -300,7 +300,7 @@ export default {
 
     @keyframes back-slider-right {
       from {
-        transform: translateX(-200%);
+        transform: translateX(-100%);
       }
       to {
         transform: translateX(0);
