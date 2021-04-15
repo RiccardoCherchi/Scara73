@@ -3,17 +3,21 @@
         <div class="custom-container text-danger">
           <div class="custom-row">
             <div class="custom col">
-              <div id="title-container" class="animate__animated title" data-aos="fade-in" data-aos-duration="1500">
-                <h1 id="title" class="animate__animated" data-aos="fade-right">{{ section.title }}</h1>
+              <div id="title-container" class="title" data-aos="fade-in" data-aos-duration="1500">
+                <h1 id="title" data-aos="fade-right">{{ section.title }}</h1>
               </div>
-              <div id="content" class="content-container animate__animated" data-aos="fade-right" data-aos-duration="1500">
+              <div class="mobile-title d-block d-md-none" data-aos="fade-in">
+                <h1 id="title">{{ section.title }}</h1>
+              </div>
+              <div id="content" class="content-container " data-aos="fade-right" data-aos-duration="1500">
                 <p v-if="section.alternativeDescription" v-html="section.alternativeDescription"></p>
                 <p class="content" v-html="section.content"></p>
               </div>
             </div>
-            <div id="description" class="custom-col animate__animated" data-aos="fade-left" data-aos-duration="1500">
+            <div id="description" class="custom-col" data-aos="fade-left" data-aos-duration="1500">
               <p class="description" v-html="section.description"></p>
               <div class="image"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
+              <p class="mobile-content d-block d-md-none" v-html="section.content"></p>
             </div>
           </div>
         </div>
@@ -24,7 +28,7 @@ export default {
   name: "Highlights",
   data() {
     return {
-      index: 0,
+      index: 1,
       status: false,
       sections: [
         {
@@ -55,6 +59,14 @@ export default {
           title: "sospensioni",
           description: "Il massimo delle sospensioni non poteva essere altro che carbonio <span style='color: #FCCE21'>Ohlins</span>. 2 vie (compressione ed estensione separate), un carico di molle dedicato al peso dell'auto e una taratura appropriata. La collaborazione con Ohlins, permette di avere un prodotto \"cucito\" alla perfezione sull'auto.",
           image: "sospensioni",
+          size: "400px",
+          alternativeDescription: null,
+          content: "",           
+        },
+        {
+          title: "cerchi",
+          description: "La scelta è caduta su progettare e produrre dei cerchi forgiati realizzati con Tornio e Fresa a controllo numerico per avere il minor peso e resistenza possibil",
+          image: "cerchi",
           size: "400px",
           alternativeDescription: null,
           content: "",           
@@ -103,7 +115,7 @@ export default {
     timedCount() {
       setTimeout(() => {
         this.status = false;
-      }, 2000);
+      }, 1000);
     },
 
     startCount() {
@@ -134,54 +146,52 @@ export default {
       
     },
 
-    initAnimate(direction) {
-      this.animate(direction, true)
-
-      setTimeout(() => {
-        this.animate(direction)
-      }, 2000)
-    },
-
-
-
-    setIndex(i, direction) {
+    setIndex(i) {
       if (i != this.index) {
-        this.initAnimate(direction)  
+        // this.initAnimate(direction)  
       
         setTimeout(() => {
           this.index = i
-        }, 1000)
+        }, 700)
       }
     },
 
-    animate(direction, exit = false) {
+    // initAnimate(direction) {
+    //   this.animate(direction, true)
 
-      const container = document.getElementsByClassName("custom-container")[0]
+    //   setTimeout(() => {
+    //     this.animate(direction)
+    //   }, 2000)
+    // },
 
-      if (exit) {
-        if (direction) {
-          console.log("next")
-          container.classList.add("next-slide-animation-left")
-          setTimeout(() => {
-            container.classList.remove("next-slide-animation-left")
-            container.classList.add("next-slide-animation-right")
-          }, 1000)
-        } else {
-          console.log("back")
-          container.classList.add("back-slide-animation-left")
-          setTimeout(() => {
-            container.classList.remove("back-slide-animation-left")
-            container.classList.add("back-slide-animation-right")
-          }, 1000)
-        }
+    // animate(direction, exit = false) {
+
+    //   const container = document.getElementsByClassName("custom-container")[0]
+
+    //   if (exit) {
+    //     if (direction) {
+    //       console.log("next")
+    //       container.classList.add("next-slide-animation-left")
+    //       setTimeout(() => {
+    //         container.classList.remove("next-slide-animation-left")
+    //         container.classList.add("next-slide-animation-right")
+    //       }, 1000)
+    //     } else {
+    //       console.log("back")
+    //       container.classList.add("back-slide-animation-left")
+    //       setTimeout(() => {
+    //         container.classList.remove("back-slide-animation-left")
+    //         container.classList.add("back-slide-animation-right")
+    //       }, 1000)
+    //     }
         
-      } else {
-        container.classList.remove("next-slide-animation-right")
-        container.classList.remove("back-slide-animation-right")
-      }
+    //   } else {
+    //     container.classList.remove("next-slide-animation-right")
+    //     container.classList.remove("back-slide-animation-right")
+    //   }
 
-      console.log(exit)
-    },
+    //   console.log(exit)
+    // },
 
     getImgUrl(image) {
       var images = require.context('@/assets/images/models/', false, /\.png$/)
@@ -254,12 +264,22 @@ export default {
     display: grid;
     grid-template-rows: 1fr auto;
     grid-gap: 10%;
+
+    @media screen and (max-width: 768px) {
+      grid-template-rows: 0.5fr auto 1fr 1fr;
+      grid-gap: 2%;
+    }
   }
 
   .custom-row {
     display: grid;
     grid-template-columns: 0.7fr auto;
     grid-gap: 10%;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: auto;
+      grid-gap: 0;
+    }
   }
 
   .next-slide-animation-left {
@@ -267,7 +287,7 @@ export default {
 
     @keyframes next-slider-left {
       to {
-        transform: translateX(-100%);
+        transform: translateX(-120%);
       }
     }
   }
@@ -334,9 +354,18 @@ export default {
         font-size: 18px;
 
         @media screen and (max-width: 1300px) {
-        font-size: 14px;
+          font-size: 14px;
+        }
+
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
       }
-      }
+    }
+
+    .mobile-content {
+      color: $secondary_text;
+      font-size: 18px;
     }
 
     p {
@@ -363,6 +392,10 @@ export default {
         margin-top: 5%;
       }
 
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+
       display: flex;
       justify-content: center;
       align-items: center;
@@ -373,6 +406,13 @@ export default {
         @media (max-width: 1300px) {
           font-size: 2rem;
         }
+      }
+    }
+
+    .mobile-title {
+      h1 {
+        color: #fff;
+        font-size: 3rem;
       }
     }
   }

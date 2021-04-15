@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <div id="openNavbarButton" class="open">
+    <div id="openNavbarButton" class="open d-md-none">
       <i class="bx bx-menu"></i>
     </div>
 
@@ -169,9 +169,10 @@ export default {
   }
 
   .close {
-    position: absolute;
+    position: fixed;
     top: 10px;
     right: 10px;
+    z-index: 1000;
 
     i {
       font-size: 50px;

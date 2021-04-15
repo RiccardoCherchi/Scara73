@@ -1,11 +1,11 @@
 <template>
   <div class="home" :class="{'on' : start}">
     <div class="custom-container">
-        <img @click="powerOn" class="start" :src="start ? getImgUrl('start-on.png') : getImgUrl('start-off.png')" alt="start button">
+        <img @click="powerOn" class="start d-none d-md-block" :src="start ? getImgUrl('start-on.png') : getImgUrl('start-off.png')" alt="start button">
         <!-- <img id="circle" class="circle" :src="getImgUrl('info-circle.png')" alt="info circle"> -->
         <!-- <img id="circle-dotted" class="circle dotted" :src="getImgUrl('info-circle-dotted.png')" alt="info circle"> -->
 
-        <svg class="circle" width="1138" height="1137" viewBox="0 0 1138 1137" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="circle d-none d-md-block" width="1138" height="1137" viewBox="0 0 1138 1137" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M569.496 1136.95C883.442 1136.95 1137.95 882.446 1137.95 568.5C1137.95 254.554 883.442 0.0500488 569.496 0.0500488C255.55 0.0500488 1.0459 254.554 1.0459 568.5C1.0459 882.446 255.55 1136.95 569.496 1136.95Z" stroke="black" stroke-width="0.1"/>
             <g id="circle">
                 <path d="M300.576 103.8C396.064 48.6701 506.195 24.2341 616.039 33.8041C725.883 43.3751 830.128 86.4891 914.64 157.302C999.16 228.115 1059.86 323.203 1088.51 429.675C1117.16 536.148 1112.38 648.856 1074.82 752.52C1037.26 856.19 968.73 945.79 878.52 1009.2C788.315 1072.6 680.794 1106.74 570.534 1106.97C460.274 1107.21 352.607 1073.54 262.129 1010.53C171.65 947.51 102.736 858.2 64.7271 754.696" stroke="white"/>
@@ -21,6 +21,9 @@
         <div class="menu" data-aos="fade-right" data-aos-duration="1500">
             <li @click="changeInfo(index)" class="item" :style="{marginLeft: `-${index}rem`}" :class="{'active': index == menu_active}" v-for="(item, index) in menu" :key="item.title">{{ item.title }}</li>
         </div>
+
+        <img @click="powerOn" class="d-block d-md-none start mobile" :src="start ? getImgUrl('start-on.png') : getImgUrl('start-off.png')" alt="start button">
+
 
         
         <div class="info-wrapper">
@@ -193,6 +196,10 @@ export default {
         background-position: center 40%;
         background-size: cover;
 
+        @media screen and (max-width: 768px) {
+            background-position: 100% 150px;
+        }
+
         min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
         min-height: 100vh; /* These two lines are counted as one :-)       */
 
@@ -214,6 +221,18 @@ export default {
         justify-content: center;
         align-items: center;
 
+        @media screen and (max-width: 768px) {
+            display: grid;
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: none;
+
+            padding-top: 80px;
+
+            grid-gap: 20px;
+        }
+
         .start {
             margin-bottom: 5%;
 
@@ -230,6 +249,14 @@ export default {
                 100% {
                     translate: scale(1);
                 }
+            }
+
+            &.mobile {
+                width: 35%;
+                animation: none;
+                justify-self: center;
+
+                display: block;
             }
         }
 
@@ -269,10 +296,25 @@ export default {
 
             top: 130%;
 
+            @media screen and (max-width: 768px){
+                display: block;
+                position: relative;
+                top: 0;
+                display: grid;
+                grid-template-rows: 100%;
+                grid-template-columns: repeat(4, 1fr);
+                justify-content: start;
+            }
+
             .info {
                 width: 200px;
                 padding: 10px;
                 border-right: 2px solid white;
+
+                @media screen and (max-width: 768px){
+                    border-right: none;
+                }
+
 
                 &:nth-last-child(1) {
                     border-right: none;
@@ -308,6 +350,13 @@ export default {
     .menu {
         position: absolute;
         left: 25%;
+
+        @media screen and (max-width: 768px) {
+            position: relative;
+            display: block;
+            left: 0;
+        }
+
         li.item {
             color: #fff;
             list-style-type: none;
@@ -316,6 +365,16 @@ export default {
 
             @media screen and (max-width: 1300px) {
                 font-size: 20px;
+            }
+
+            @media screen and (max-width: 768px) {
+                margin: 0 !important;
+                text-align: center;
+                font-size: 1.8rem;
+
+                &.active {
+                    font-size: 2rem;
+                }
             }
 
             &.active {
@@ -333,6 +392,11 @@ export default {
                 margin-right:1em;
                 margin-top: 30px;   
                 margin-bottom: -5px;
+
+                @media screen and (max-width: 768px) {
+                    margin-right: 0;
+                    background-image: none;
+                }
             }
         }
 

@@ -41,10 +41,12 @@ export default {
       sections: [
         {
           title: "MASSIME <br /> PERFORMANCE",
+          class: "massime-performance",
           content: "Per garantire il massimo delle performance possibili la <span style='color: #FCCE21'>mappa motore</span> e la <span style='color: #FCCE21'>mappa cambio</span> sono state sviluppate direttamente sull’auto. <br><br> <span style='color: #FCCE21'>L’intercooler maggiorato</span> riesce a tenere sotto controllo le temperature che vengono generate dall'aumento di prestazioni. Lo stesso e' stato sviluppato con massa radiante motorsport con vaschetta inferiore realizzata di CNC e vaschetta superiore in carbonio liscia dentro per avere una fluidodinamica eccelsa e una efficienza termica ineguagliabile. <br><br>Il downpipe originale è stato sostituito con un <span style='color: #FCCE21'>downpipe con kat 200celle</span> per migliorare ulteriormente le prestazioni dell’auto."
         },
         {
           title: "MINIMO <br /> PESO",
+          class: "minimo-peso",
           content: "I vantaggi di un’auto alleggerita sono molteplici:migliora l’accelerazione, la frenata, l’inserimento in curva, si ottimizzano i consumi e aumenta la velocità di percorrenza. Per arrivare a questi risultati sono state sostituite / rimosse gran parte delle componenti. Ecco i dati più rilevanti:",
           statistics: [
             {
@@ -77,15 +79,18 @@ export default {
       ],
       options: {
         afterLoad(_, data) {
+          const home = document.getElementsByClassName("home")[0]
 
           if (data.index == 1) {
             document.getElementById("arrow").classList.add("arrow-hidden")
           } else {
             document.getElementById("arrow").classList.remove("arrow-hidden")
+            home.classList.remove("minimo-peso")
           }
 
           if (data.index >= 1) {
             let aos = document.querySelectorAll("[data-aos]")
+            home.classList.add("minimo-peso")
             aos.forEach((e) => {
               e.classList.add("aos-animate")
             })
@@ -116,7 +121,33 @@ export default {
 
   display: flex;
   align-items: center;
-  background-image: url("../assets/images/backgrounds/cofano.jpg");
+  background-image: url("../assets/images/backgrounds/massime-performance.jpg");
+
+  &.minimo-peso {
+    background-image: url("../assets/images/backgrounds/cofano.jpg");
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url("../assets/images/backgrounds/massime-performance.jpg");
+    opacity: 0;
+    animation: opacity 2s;
+
+    @keyframes opacity {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+
+  }
 }
 
 .container{
