@@ -7,6 +7,7 @@ import Overview from '../views/Overview.vue';
 import Info from '../views/Info.vue';
 import Gallery from '../views/Gallery.vue';
 import Presentation from '../views/Presentation.vue';
+import Contact from '../views/Contact.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/galleria',
     name: 'Galleria',
     component: Gallery,
+  },
+  {
+    path: '/contattaci',
+    name: 'Contatti',
+    component: Contact,
   }
 ]
 

@@ -1,27 +1,27 @@
 <template>
-<div class="home" :class="section.title">
-        <div class="custom-container text-danger">
-          <div class="custom-row">
-            <div class="custom col">
-              <div id="title-container" class="title" data-aos="fade-in" data-aos-duration="1500">
-                <h1 id="title" data-aos="fade-right">{{ section.title }}</h1>
-              </div>
-              <div class="mobile-title d-block d-md-none" data-aos="fade-in">
-                <h1 id="title">{{ section.title }}</h1>
-              </div>
-              <div id="content" class="content-container " data-aos="fade-right" data-aos-duration="1500">
-                <p v-if="section.alternativeDescription" v-html="section.alternativeDescription"></p>
-                <p class="content" v-html="section.content"></p>
-              </div>
-            </div>
-            <div id="description" class="custom-col" data-aos="fade-left" data-aos-duration="1500">
-              <p class="description" v-html="section.description"></p>
-              <div class="image"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
-              <p class="mobile-content d-block d-md-none" v-html="section.content"></p>
-            </div>
+  <div class="home" :class="section.title">
+    <div class="custom-container text-danger">
+      <div class="custom-row">
+        <div class="custom col">
+          <div id="title-container" class="title" data-aos="fade-in" data-aos-duration="1500">
+            <h1 id="title" data-aos="fade-right">{{ section.title }}</h1>
+          </div>
+          <div class="mobile-title d-block d-md-none" data-aos="fade-in">
+            <h1 id="title">{{ section.title }}</h1>
+          </div>
+          <div id="content" class="content-container " data-aos="fade-right" data-aos-duration="1500">
+            <p v-if="section.alternativeDescription" v-html="section.alternativeDescription"></p>
+            <p class="content" v-html="section.content"></p>
           </div>
         </div>
-</div>
+        <div id="description" class="custom-col" data-aos="fade-left" data-aos-duration="1500">
+          <p class="description" v-html="section.description"></p>
+          <div class="image"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
+          <p class="mobile-content d-block d-md-none" v-html="section.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -146,52 +146,52 @@ export default {
       
     },
 
-    setIndex(i) {
+    setIndex(i, direction) {
       if (i != this.index) {
-        // this.initAnimate(direction)  
+        this.initAnimate(direction)  
       
         setTimeout(() => {
           this.index = i
-        }, 700)
+        }, 800)
       }
     },
 
-    // initAnimate(direction) {
-    //   this.animate(direction, true)
+    initAnimate(direction) {
+      this.animate(direction, true)
 
-    //   setTimeout(() => {
-    //     this.animate(direction)
-    //   }, 2000)
-    // },
+      setTimeout(() => {
+        this.animate(direction)
+      }, 2500)
+    },
 
-    // animate(direction, exit = false) {
+    animate(direction, exit = false) {
 
-    //   const container = document.getElementsByClassName("custom-container")[0]
+      const container = document.getElementsByClassName("custom-container")[0]
 
-    //   if (exit) {
-    //     if (direction) {
-    //       console.log("next")
-    //       container.classList.add("next-slide-animation-left")
-    //       setTimeout(() => {
-    //         container.classList.remove("next-slide-animation-left")
-    //         container.classList.add("next-slide-animation-right")
-    //       }, 1000)
-    //     } else {
-    //       console.log("back")
-    //       container.classList.add("back-slide-animation-left")
-    //       setTimeout(() => {
-    //         container.classList.remove("back-slide-animation-left")
-    //         container.classList.add("back-slide-animation-right")
-    //       }, 1000)
-    //     }
+      if (exit) {
+        if (direction) {
+          console.log("next")
+          container.classList.add("next-slide-animation-left")
+          setTimeout(() => {
+            container.classList.remove("next-slide-animation-left")
+            container.classList.add("next-slide-animation-right")
+          }, 1000)
+        } else {
+          console.log("back")
+          container.classList.add("back-slide-animation-left")
+          setTimeout(() => {
+            container.classList.remove("back-slide-animation-left")
+            container.classList.add("back-slide-animation-right")
+          }, 1000)
+        }
         
-    //   } else {
-    //     container.classList.remove("next-slide-animation-right")
-    //     container.classList.remove("back-slide-animation-right")
-    //   }
+      } else {
+        container.classList.remove("next-slide-animation-right")
+        container.classList.remove("back-slide-animation-right")
+      }
 
-    //   console.log(exit)
-    // },
+      console.log(exit)
+    },
 
     getImgUrl(image) {
       var images = require.context('@/assets/images/models/', false, /\.png$/)
@@ -310,7 +310,7 @@ export default {
 
     @keyframes back-slider-left {
       to {
-        transform: translateX(100%);
+        transform: translateX(150%);
       }
     }
   }

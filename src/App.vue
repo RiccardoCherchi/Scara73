@@ -56,13 +56,13 @@ export default {
           name: "GALLERY",
           to: "/galleria"
         },
-        {
-          name: "360°",
-          to: "#"
-        },
+        // {
+        //   name: "360°",
+        //   to: "#"
+        // },
         {
           name: "CONTATTI",
-          to: "#"
+          to: "/contattaci"
         }
       ]
     }
@@ -116,7 +116,7 @@ export default {
   width: 100%;
   height: 8%;
 
-  background-color: #353535;
+  background-color: $bg_color;
 
 
   a {

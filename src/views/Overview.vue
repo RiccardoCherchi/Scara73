@@ -1,12 +1,13 @@
 <template>
   <div class="home">
-      <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
-        <!-- <div class="section">
-            <div class="title" data-aos="fade-right" data-aos-duration="1500">
-                Cerchi forgiati di alta qualità per raggiungere il minor peso possibile con la maggior resistenza
-            </div>
-        </div> -->
-      </full-page>
+      <div class="points-container">
+          <div class="points-box">
+              
+          </div>
+      </div>
+      <div class="mobile-view d-block d-lg-none">
+        <h1 v-html="activeText"></h1>
+      </div>
   </div>
 </template>
 
@@ -16,45 +17,46 @@ export default {
     data() {
         return {
             options: {},
+            activeText: null,
             coordinates: [
                 {
-                    x: 75,
-                    y: 78,
+                    x: 87,
+                    y: 65,
                     text: "Finale in titanio a 3 uscite"
                 },
                 {
-                    x: 71,
-                    y: 59,
+                    x: 80,
+                    y: 20,
                     text: "cofano posteriore con carbon scoop studiato su misura per avere il massimo della leggerezza e delle performance di estrazione aria"
                 },
                 {
-                    x: 63,
+                    x: 70,
                     y: 67,
                     text: "Ammortizzatori Ohlins STX realizzati su misura per l'auto con doppia regolazione in compressione ed estensione"
                 },
                 {
-                    x: 46,
-                    y: 69,
+                    x: 45,
+                    y: 40,
                     text: "Porte con pannelli <br/>in carbonio integrati <br/>e vetri lexan"
                 },
                 {
-                    x: 39,
-                    y: 58,
+                    x: 31,
+                    y: 18,
                     text: "Parabrezza lexan per ridurre il peso di 3kg rispetto all’originale."
                 },
                 {
-                    x: 29,
-                    y: 61,
+                    x: 10,
+                    y: 85,
                     text: "Pneumatici semislick <br/>ad alte prestazioni"
                 },
                 {
-                    x: 32,
-                    y: 78,
+                    x: 17,
+                    y: 25,
                     text: "Pneumatici semislick ad alte prestazion"
                 },
                 {
-                    x: 25,
-                    y: 85,
+                    x: 20,
+                    y: 70,
                     text: "Cerchi forgiati di alta qualità per raggiungere il minor peso possibile con la maggior resistenza"
                 },
             ]
@@ -63,10 +65,12 @@ export default {
 
     mounted() {
 
-        const home = document.getElementsByClassName("home")[0];
+
+
+        const points_box = document.getElementsByClassName("points-box")[0];
 
         this.coordinates.forEach((e, i) => {
-            let point = home.appendChild(
+            let point = points_box.appendChild(
                 document.createElement("div")
             );
             point.classList.add("point", "animate__animated", "animate__fadeIn");
@@ -84,6 +88,8 @@ export default {
                 )
                 pointText.classList.add("point-text", `point_${i}`)
                 pointText.innerHTML = e.text
+
+                this.activeText = e.text;
             })
 
             point.addEventListener("mouseleave", (event) => {
@@ -105,6 +111,19 @@ export default {
 <style lang="scss">
     .point {
         position: absolute;
+
+        @media screen and (max-width: 600px) {
+            img {
+                width: 30px;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            img {
+                width: 50px;
+            }
+        }
+
         .point-text {
             width: 300px;
             color: white;
@@ -136,6 +155,10 @@ export default {
             &.point_6 {
                 transform: translate(-100px, -300px);
             }
+
+            @media screen and (max-width: 992px) {
+                display: none;
+            }
         }
     }
 </style>
@@ -146,9 +169,53 @@ export default {
         min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
         min-height: 100vh; /* These two lines are counted as one :-)       */
 
+        display: grid;
+
+        @media screen and (max-width: 992px) {
+            grid-template-rows: 80% auto;
+        }
+    }
+
+    .points-box {
+        width: 65%;
+        height: 40%;
+
+        position: absolute;
+        bottom: 11%;
+        left: 50%;
+
+        transform: translate(-50%);
+
+        @media screen and (max-width: 992px) {
+            top: 22%;
+            height: 20%;
+            width: 70%;
+        }
+
+        @media screen and (max-width: 600px) {
+            top: 55%;
+            height: 15%;
+            width: 118%;
+        }
+    }
+
+    .points-container {
         background-image: url("../assets/images/backgrounds/overview.jpg");
         background-position: center;
         background-size: cover;
+
+        @media screen and (max-width: 992px) {
+            background-image: url("../assets/images/backgrounds/overview-mobile.jpg");
+        }
+    }
+
+    .mobile-view {
+        h1 {
+            text-align: center;
+            color: white;
+            margin-top: 5%;
+            font-size: 1.4rem;
+        }
     }
 
     .title {
