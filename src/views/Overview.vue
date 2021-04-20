@@ -40,19 +40,19 @@ export default {
                     text: "Porte con pannelli <br/>in carbonio integrati <br/>e vetri lexan"
                 },
                 {
-                    x: 31,
-                    y: 18,
+                    x: 35,
+                    y: 5,
                     text: "Parabrezza lexan per ridurre il peso di 3kg rispetto all’originale."
+                },
+                {
+                    x: 30,
+                    y: 25,
+                    text: "specchi retrovisori racing"
                 },
                 {
                     x: 10,
                     y: 85,
                     text: "Pneumatici semislick <br/>ad alte prestazioni"
-                },
-                {
-                    x: 17,
-                    y: 25,
-                    text: "Pneumatici semislick ad alte prestazion"
                 },
                 {
                     x: 20,
@@ -187,9 +187,9 @@ export default {
         transform: translate(-50%);
 
         @media screen and (max-width: 992px) {
-            top: 22%;
+            top: 40%;
             height: 20%;
-            width: 70%;
+            width: 100%;
         }
 
         @media screen and (max-width: 600px) {
@@ -204,7 +204,7 @@ export default {
         background-position: center;
         background-size: cover;
 
-        @media screen and (max-width: 992px) {
+        @media screen and (max-width: 600px) {
             background-image: url("../assets/images/backgrounds/overview-mobile.jpg");
         }
     }

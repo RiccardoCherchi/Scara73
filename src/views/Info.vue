@@ -196,6 +196,8 @@ export default {
         background-position: center 40%;
         background-size: cover;
 
+        overflow: hidden;
+
         @media screen and (max-width: 768px) {
             background-position: 100% 150px;
         }
@@ -299,7 +301,9 @@ export default {
             @media screen and (max-width: 768px){
                 display: block;
                 position: relative;
-                top: 0;
+
+                overflow: scroll;
+
                 display: grid;
                 grid-template-rows: 100%;
                 grid-template-columns: repeat(4, 1fr);

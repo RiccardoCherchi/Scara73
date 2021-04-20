@@ -126,6 +126,8 @@ export default {
   &.minimo-peso {
     background-image: url("../assets/images/backgrounds/cofano.jpg");
 
+  
+
   &::before {
     content: "";
     position: absolute;

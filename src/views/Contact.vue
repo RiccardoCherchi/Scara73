@@ -44,7 +44,7 @@ export default {
         background-size: cover;
         background-position: center;
 
-        overflow: scroll;
+        overflow-x: hidden;
 
         padding: 10% 15%;
 
