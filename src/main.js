@@ -16,6 +16,6 @@ new Vue({
   router,
   render: h => h(App),
   created() {
-    AOS.init()
+    AOS.init();
   }
 }).$mount('#app')

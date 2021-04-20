@@ -15,12 +15,22 @@
             </div>
           </div>
         </div>
-        <div class="statistics" v-if="section.statistics">
+        <div class="statistics d-none d-md-flex" v-if="section.statistics">
             <div class="statistic" :class="{'important': statistic.important}" v-for="(statistic, i) in section.statistics" :key="i" data-aos="fade-up" :data-aos-duration="500 * i">
               <p class="title" v-html="statistic.title"></p>
               <p class="value">{{ statistic.value }}</p>
             </div>
         </div>
+        <div class="statistics splide d-block d-md-none" v-if="section.statistics">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class="splide__slide statistic" :class="{'important': statistic.important}" v-for="(statistic, i) in section.statistics" :key="i">
+                <p class="title" v-html="statistic.title"></p>
+                <p class="value">{{ statistic.value }}</p>
+              </li>
+            </ul>
+          </div>
+</div>
     </div>
     </div>
   </full-page>
@@ -102,11 +112,9 @@ export default {
   },
   mounted() {
     this.$refs.fullpage.init();
-
   },
   updated() {
     this.$refs.fullpage.init()
-
   },
   
 }
@@ -190,6 +198,8 @@ export default {
 
       &.important {
         background-color: $primary_color;
+
+
         p {
           color: #000;
           &.value {
