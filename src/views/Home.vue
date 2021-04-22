@@ -21,7 +21,7 @@
               <p class="value">{{ statistic.value }}</p>
             </div>
         </div>
-        <div class="statistics splide d-block d-md-none" v-if="section.statistics">
+        <div class="statistics splide d-block d-md-none" data-aos="fade-left" data-aos-duration="1500" v-if="section.statistics">
           <div class="splide__track">
             <ul class="splide__list">
               <li class="splide__slide statistic" :class="{'important': statistic.important}" v-for="(statistic, i) in section.statistics" :key="i">
@@ -30,7 +30,7 @@
               </li>
             </ul>
           </div>
-</div>
+        </div>
     </div>
     </div>
   </full-page>
@@ -112,6 +112,8 @@ export default {
   },
   mounted() {
     this.$refs.fullpage.init();
+
+    new window.Splide( '.splide' ).mount();
   },
   updated() {
     this.$refs.fullpage.init()

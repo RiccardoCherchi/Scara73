@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <div id="openNavbarButton" class="open d-md-none">
+    <div id="openNavbarButton" class="open d-lg-none">
       <i class="bx bx-menu"></i>
     </div>
 
@@ -156,7 +156,8 @@ export default {
 #mobile-nav {
   position: fixed;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100%;
   z-index: 100;
 
   background-color: $bg_color;

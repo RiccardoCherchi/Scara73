@@ -26,16 +26,27 @@
 
 
         
-        <div class="info-wrapper">
+        <div class="info-wrapper d-none d-md-flex">
             <div class="info" v-for="(item, i) in infos[info_index].info" :key="i">
                 <div class="wrapper animate__animated" :data-aos-duration="500 * i" data-aos="fade-down">
                     <p class="title" v-html="item.title"></p>
                     <p class="value">{{ item.value }}</p>
                     <p class="text">{{ item.text }}</p>
                 </div>
-                
             </div>
         </div>  
+
+        <div class="mobile-info-wrapper splide d-block d-md-none">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class="splide__slide info" v-for="(item, i) in infos[info_index].info" :key="i">
+                <p class="title" v-html="item.title"></p>
+                <p class="value">{{ item.value }}</p>
+                <p class="text">{{ item.text }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
 
     </div>
   </div>
@@ -128,6 +139,7 @@ export default {
 
     mounted() {
         window.addEventListener("wheel", (e) => {this.handleScroll(e.deltaY > 0)});
+        new window.Splide( '.splide' ).mount();
     },
 
     destroyed() {
@@ -154,34 +166,39 @@ export default {
         },
 
         changeInfo(index) {
-            if (index != this.info_index) {
+            if (window.innerWidth >= 768) {
+                if (index != this.info_index) {
+                    this.menu_active = index;
+
+                    let circle = document.getElementById("circle")
+                    let circle_dotted = document.getElementById("circle-dotted")
+
+                    let wrappers = document.getElementsByClassName("wrapper")
+
+
+                    circle.classList.add("animate")
+
+                    circle_dotted.classList.add("animate-dotted")
+                    wrappers.forEach((e) => {
+                        e.classList.add("animate__fadeOutDown")
+                    })
+                    setTimeout(() => {
+                        this.info_index = index
+                        wrappers.forEach((e) => {
+                        e.classList.remove("animate__fadeOutDown")
+                    })
+                        wrappers.forEach((e) => {
+                        e.classList.add("animate__fadeInDown")
+                    })
+                    }, 1200)
+                    setTimeout(() => {  
+                        circle_dotted.classList.remove("animate-dotted")
+                        circle.classList.remove("animate")
+                    }, 1700)
+                }
+            } else {
+                this.info_index = index;
                 this.menu_active = index;
-
-                let circle = document.getElementById("circle")
-                let circle_dotted = document.getElementById("circle-dotted")
-
-                let wrappers = document.getElementsByClassName("wrapper")
-
-
-                circle.classList.add("animate")
-
-                circle_dotted.classList.add("animate-dotted")
-                wrappers.forEach((e) => {
-                    e.classList.add("animate__fadeOutDown")
-                })
-                setTimeout(() => {
-                    this.info_index = index
-                    wrappers.forEach((e) => {
-                    e.classList.remove("animate__fadeOutDown")
-                })
-                    wrappers.forEach((e) => {
-                    e.classList.add("animate__fadeInDown")
-                })
-                }, 1200)
-                setTimeout(() => {  
-                    circle_dotted.classList.remove("animate-dotted")
-                    circle.classList.remove("animate")
-                }, 1700)
             }
         }
   }
@@ -196,7 +213,7 @@ export default {
         background-position: center 40%;
         background-size: cover;
 
-        overflow: hidden;
+        overflow-y: hidden;
 
         @media screen and (max-width: 768px) {
             background-position: 100% 150px;
@@ -289,65 +306,76 @@ export default {
         }
 
         
+        
+    .info-wrapper {
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        top: 130%;
+    }
+
+    .mobile-info-wrapper {
+        position: absolute;
+        top: 130%;
+        left: 50%;
+        width: 100%;
+        height: 150px;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transform: translateX(-50%);
+
+        background: rgba(0, 0, 0, 0.7);
+
+        .info {
+            align-self: center;
             
-        .info-wrapper {
-            position: absolute;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-
-            top: 130%;
-
-            @media screen and (max-width: 768px){
-                display: block;
-                position: relative;
-
-                overflow: scroll;
-
-                display: grid;
-                grid-template-rows: 100%;
-                grid-template-columns: repeat(4, 1fr);
-                justify-content: start;
-            }
-
-            .info {
-                width: 200px;
-                padding: 10px;
-                border-right: 2px solid white;
-
-                @media screen and (max-width: 768px){
-                    border-right: none;
-                }
-
-
-                &:nth-last-child(1) {
-                    border-right: none;
-                }
-
             p {
-                margin: 0;
-                text-align: center;
+                font-size: 25px;
             }
-            
-            .title {
-                color: $primary_color;
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-            .value {
-                color: white;
-                font-size: 28px;
-                font-weight: bold;
 
-                @media screen and (max-width: 1300px) {
-                font-size: 18px;
+            @media screen and (max-width: 768px) {
+                border-right: none;
             }
-            }
-            .text {
-                color: white;
-                margin-top: -8px;
-                font-size: 18px;
-            }
+        }
+    }
+
+    .info {
+        width: 200px;
+        padding: 10px;
+        border-right: 2px solid white;
+
+        &:nth-last-child(1) {
+            border-right: none;
+        }
+
+        p {
+            margin: 0;
+            text-align: center;
+        }
+            
+        .title {
+            color: $primary_color;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .value {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+
+            @media screen and (max-width: 1300px) {
+            font-size: 18px;
+        }
+        }
+        .text {
+            color: white;
+            margin-top: -8px;
+            font-size: 18px;
         }
     }
 

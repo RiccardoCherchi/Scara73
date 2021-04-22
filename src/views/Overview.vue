@@ -171,8 +171,14 @@ export default {
 
         display: grid;
 
+        overflow-x: hidden;
+
         @media screen and (max-width: 992px) {
             grid-template-rows: 80% auto;
+        }
+
+        @media screen and (max-height: 700px) {
+            grid-template-rows: 50% auto;
         }
     }
 
@@ -185,6 +191,10 @@ export default {
         left: 50%;
 
         transform: translate(-50%);
+
+        @media screen and (max-height: 700px) {
+            top: 30% !important;
+        }
 
         @media screen and (max-width: 992px) {
             top: 40%;
@@ -206,6 +216,10 @@ export default {
 
         @media screen and (max-width: 600px) {
             background-image: url("../assets/images/backgrounds/overview-mobile.jpg");
+        }
+
+        @media screen and (max-height: 700px) {
+            background-position: 0 900px;
         }
     }
 

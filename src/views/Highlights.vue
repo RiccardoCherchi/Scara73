@@ -1,5 +1,9 @@
 <template>
   <div class="home" :class="section.title">
+
+    <div class="circle">
+    </div>
+
     <div class="custom-container text-danger">
       <div class="custom-row">
         <div class="custom col">
@@ -16,7 +20,7 @@
         </div>
         <div id="description" class="custom-col" data-aos="fade-left" data-aos-duration="1500">
           <p class="description" v-html="section.description"></p>
-          <div class="image"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
+          <div id="image" class="image animate__animated"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
           <p class="mobile-content d-block d-md-none" v-html="section.content"></p>
         </div>
       </div>
@@ -167,21 +171,28 @@ export default {
     animate(direction, exit = false) {
 
       const container = document.getElementsByClassName("custom-container")[0]
+      const image = document.getElementById("image");
 
       if (exit) {
         if (direction) {
           console.log("next")
           container.classList.add("next-slide-animation-left")
+          image.classList.add("animate__fadeOutDownBig")
           setTimeout(() => {
             container.classList.remove("next-slide-animation-left")
             container.classList.add("next-slide-animation-right")
+            image.classList.remove("animate__fadeOutDownBig")
+            image.classList.add("animate__fadeInUpBig")
           }, 750)
         } else {
           console.log("back")
           container.classList.add("back-slide-animation-left")
+          image.classList.add("animate__fadeOutDownBig")
           setTimeout(() => {
             container.classList.remove("back-slide-animation-left")
             container.classList.add("back-slide-animation-right")
+            image.classList.remove("animate__fadeOutDownBig")
+            image.classList.add("animate__fadeInUpBig")
           }, 750)
         }
         
@@ -217,6 +228,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    overflow: hidden;
 
     &.carrozzeria {
       background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
@@ -259,6 +272,20 @@ export default {
       }
     }
   }
+
+  // .circle {
+  //   width: 280px;
+  //   height: 280px;
+
+  //   position: absolute;
+  //   top: 28%;
+  //   left: 10%;
+
+  //   background-image: url("../assets/images/elements/circle.svg");
+  //   background-repeat: no-repeat;
+  //   background-position: center;
+  //   background-size: cover;
+  // }
 
   .custom-col {
     display: grid;

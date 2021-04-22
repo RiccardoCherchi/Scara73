@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="row">
-        <div class="col-lg-6 info">
+        <div class="pt-5 col-lg-6 info">
             <h1>CONTATTI</h1>
             <p>Scaravelli Ing. Enrico</p>
             <p>Via Concezione 20/b 46100, Mantova (MN) IT</p>
