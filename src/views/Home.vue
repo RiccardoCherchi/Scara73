@@ -65,17 +65,17 @@ export default {
               important: false
             },
             {
-              title: "CERCHI <br>39,6 kg",
-              value: "13.4 kg",
+              title: "CERCHI <br>19 kg",
+              value: "13,4 kg",
               important: false
             },
             {
-              title: "SEDILI <br>18,3 kg",
-              value: "2.5 kg",
+              title: "SEDILE <br>11,3 kg",
+              value: "2,5 kg",
               important: false
             },
             {
-              title: "PORTE <br>46,2 kg",
+              title: "PORTA <br>46,2 kg",
               value: "17 kg",
               important: false
             },
@@ -132,11 +132,14 @@ export default {
   display: flex;
   align-items: center;
   background-image: url("../assets/images/backgrounds/massime-performance.jpg");
+  
+  background-position: 0 -100px;
 
   &.minimo-peso {
     background-image: url("../assets/images/backgrounds/cofano.jpg");
 
-  
+    background-position: 0 -100px;
+
 
   &::before {
     content: "";
@@ -146,6 +149,7 @@ export default {
     bottom: 0px;
     left: 0px;
     background-image: url("../assets/images/backgrounds/massime-performance.jpg");
+    background-position: 0 -100px;
     opacity: 0;
     animation: opacity 2s;
 

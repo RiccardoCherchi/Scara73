@@ -7,18 +7,18 @@
     <div class="custom-container text-danger">
       <div class="custom-row">
         <div class="custom col">
-          <div id="title-container" class="title" data-aos="fade-in" data-aos-duration="1500">
+          <div id="title-container" class="title animate__animated" data-aos="fade-in" data-aos-duration="1500">
             <h1 id="title" data-aos="fade-right">{{ section.title }}</h1>
           </div>
           <div class="mobile-title d-block d-md-none" data-aos="fade-in">
-            <h1 id="title">{{ section.title }}</h1>
+            <h1 id="title" class="animate__animated">{{ section.title }}</h1>
           </div>
-          <div id="content" class="content-container " data-aos="fade-right" data-aos-duration="1500">
+          <div id="content" class="content-container animate__animated" data-aos="fade-right" data-aos-duration="1500">
             <p v-if="section.alternativeDescription" v-html="section.alternativeDescription"></p>
             <p class="content" v-html="section.content"></p>
           </div>
         </div>
-        <div id="description" class="custom-col" data-aos="fade-left" data-aos-duration="1500">
+        <div id="description" class="custom-col animate__animated" data-aos="fade-left" data-aos-duration="1500">
           <p class="description" v-html="section.description"></p>
           <div id="image" class="image animate__animated"><img :style="{width: section.size}" :src="getImgUrl(section.image)" alt="modello"></div>
           <p class="mobile-content d-block d-md-none" v-html="section.content"></p>
@@ -172,27 +172,68 @@ export default {
 
       const container = document.getElementsByClassName("custom-container")[0]
       const image = document.getElementById("image");
+      const title = document.getElementById("title")
+      const content = document.getElementById("content")
+      const description = document.getElementById("description")
 
       if (exit) {
         if (direction) {
           console.log("next")
           container.classList.add("next-slide-animation-left")
+
           image.classList.add("animate__fadeOutDownBig")
+
+          title.classList.add("animate__fadeOutLeftBig", "animate__faster")
+
+          content.classList.add("animate__fadeOutLeftBig", "animate__fast")
+
+          description.classList.add("animate__fadeOutLeftBig", "animate__fast")
+
           setTimeout(() => {
             container.classList.remove("next-slide-animation-left")
             container.classList.add("next-slide-animation-right")
+
             image.classList.remove("animate__fadeOutDownBig")
             image.classList.add("animate__fadeInUpBig")
+
+            title.classList.remove("animate__fadeOutLeftBig")
+            title.classList.add("animate__fadeInLeftBig", "animate__faster")
+
+            content.classList.remove("animate__fadeOutLeftBig")
+            content.classList.add("animate__fadeInLeftBig", "animate__fast")
+
+            description.classList.remove("animate__fadeOutLeftBig")
+            description.classList.add("animate__fadeInLeftBig", "animate__fast")
           }, 750)
         } else {
           console.log("back")
           container.classList.add("back-slide-animation-left")
+
           image.classList.add("animate__fadeOutDownBig")
+
+          title.classList.add("animate__fadeOutLeftBig", "animate__faster")
+
+          content.classList.add("animate__fadeOutLeftBig", "animate__fast")
+
+          description.classList.add("animate__fadeOutLeftBig", "animate__fast")
           setTimeout(() => {
             container.classList.remove("back-slide-animation-left")
             container.classList.add("back-slide-animation-right")
+
             image.classList.remove("animate__fadeOutDownBig")
             image.classList.add("animate__fadeInUpBig")
+
+                        image.classList.remove("animate__fadeOutDownBig")
+            image.classList.add("animate__fadeInUpBig")
+
+            title.classList.remove("animate__fadeOutLeftBig")
+            title.classList.add("animate__fadeInLeftBig", "animate__faster")
+
+            content.classList.remove("animate__fadeOutLeftBig")
+            content.classList.add("animate__fadeInLeftBig", "animate__fast")
+
+            description.classList.remove("animate__fadeOutLeftBig")
+            description.classList.add("animate__fadeInLeftBig", "animate__fast")
           }, 750)
         }
         
@@ -240,36 +281,36 @@ export default {
     }
 
     &.finale {
-      background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
+      background-image: url("../assets/images/backgrounds/dettagli.jpg");
     }
 
     &.sospensioni {
-      background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
+      background-image: url("../assets/images/backgrounds/dettagli.jpg");
     }
 
     &.dettagli {
       background-image: url("../assets/images/backgrounds/dettagli.jpg");
 
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-        left: 0px;
-        background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
-        opacity: 0;
-        animation: opacity 2s;
+      // &::before {
+      //   content: "";
+      //   position: absolute;
+      //   top: 0px;
+      //   right: 0px;
+      //   bottom: 0px;
+      //   left: 0px;
+      //   background-image: url("../assets/images/backgrounds/carrozzeria.jpg");
+      //   opacity: 0;
+      //   animation: opacity 2s;
 
-        @keyframes opacity {
-          0% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-      }
+      //   @keyframes opacity {
+      //     0% {
+      //       opacity: 1;
+      //     }
+      //     100% {
+      //       opacity: 0;
+      //     }
+      //   }
+      // }
     }
   }
 

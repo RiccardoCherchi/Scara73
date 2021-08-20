@@ -76,7 +76,7 @@ export default {
                     info: [
                     {
                         title: "peso a secco",
-                        value: "xxx kg",
+                        value: "778,2 kg",
                     },
                     {
                         title: "motore",
